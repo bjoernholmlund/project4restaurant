@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Home | Bite Restaurant{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1 class="text-4xl font-bold mb-4">Welcome to Bite Restaurant</h1>
+    <p class="text-lg mb-6">Experience fine dining with delicious dishes and exquisite service.</p>
+    
+    <a href="{% url 'book_table' %}" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+        Book a Table
+    </a>
+</div>
+{% endblock %}

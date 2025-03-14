@@ -1,0 +1,39 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Restaurant{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="bg-gray-800 text-white p-4">
+        <nav class="container mx-auto flex justify-between items-center">
+            <a href="{% url 'index' %}" class="text-2xl font-bold">Bite Restaurant</a>
+            <ul class="flex gap-4">
+                <li><a href="{% url 'index' %}" class="hover:text-gray-300">Home</a></li>
+                <li><a href="{% url 'book_table' %}" class="hover:text-gray-300">Book Table</a></li>
+                <li><a href="{% url 'menu' %}" class="hover:text-gray-300">Menu</a></li>
+                <li><a href="{% url 'profile' %}" class="hover:text-gray-300">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="container mx-auto p-6">
+        {% block content %}
+        <!-- Page-specific content will go here -->
+        {% endblock %}
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-800 text-white text-center p-4">
+        <p>&copy; 2025 Bite Restaurant. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
