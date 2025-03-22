@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,33 +6,121 @@
     <title>{% block title %}Restaurant{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-</head>
-<body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <!-- HEADER -->
-    <header class="bg-gray-800 text-white p-4">
-        <nav class="container mx-auto flex justify-between items-center">
-            <a href="{% url 'index' %}" class="text-2xl font-bold">Bite Restaurant</a>
-            <ul class="flex gap-4">
-                <li><a href="{% url 'index' %}" class="hover:text-gray-300">Home</a></li>
-                <li><a href="{% url 'book_table' %}" class="hover:text-gray-300">Book Table</a></li>
-                <li><a href="{% url 'menu' %}" class="hover:text-gray-300">Menu</a></li>
-                <li><a href="{% url 'profile' %}" class="hover:text-gray-300">Profile</a></li>
-            </ul>
+
+</head>
+<body class="bg-gray-100 text-gray-900">
+    <!--Hamburger menu appearance-->
+    <div class="off-screen-menu">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#reservation" id="reservation-link">Reservation</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+            
+    <!-- Header -->
+    <header>             
+        <nav>
+            <div class="ham-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+        <div class="overlay"></div>
+           <div class="logo-bite"></div>
+
+        <div class="container-nav">  
+            <!-- Knapp för att öppna popup -->
+            <button type="button" class="btn" onclick="openPopup()">RESERVATION</button>
+
+            <!-- Popup -->
+            <div class="popup" id="popup">
+                <div class="popup-content">
+                    <span class="close" onclick="closePopup()">&times;</span>
+                        <h2>Book a table</h2>
+                            <form action="{% url 'book_table' %}" method="POST">
+                               {% csrf_token %}
+            
+                               <div class="input-box">
+                                    <span class="details">Full Name</span>
+                                    <input type="text" name="guest_name" placeholder="Enter your name" required>
+                                </div>
+            
+                                <div class="input-box">
+                                    <span class="details">Email</span>
+                                    <input type="email" name="guest_email" placeholder="Enter your email" required>
+                                </div>
+            
+                                <div class="input-box">
+                                    <span class="details">Phone</span>
+                                    <input type="tel" placeholder="Enter your phone number" required>
+                                </div>
+            
+                                <div class="input-box">
+                                    <span class="details"></span>
+                                    <select name="table" required>
+                                    <option value="">Select Table</option>
+                                        {% for table in tables %}
+                                    <option value="{{ table.id }}">Table {{ table.table_number }} (Seats: {{ table.capacity }})</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+            
+                                <div class="input-box">
+                                    <span class="details">Date</span>
+                                    <input type="datetime-local" name="date_time"required>
+                                </div>
+            
+                                    <button type="submit" class="submit-btn">Reservate</button> 
+            
+                            </form>
+                    </div>
+                </div>
+        </div>
         </nav>
     </header>
 
+    <div class="container">
+        <div class="box" id="box1">
+            <div class="center-text">
+                <div class="big-text"><h1 id="delayed-text" class="hidden">Welcome to Bite</h1></div>
+            </div>
+
+        </div>
+
+    
+        <!-- Karusellen med knappar -->
+        <div class="carousel-wrapper">
+            <button class="prev-btn"><i class="fa-solid fa-arrow-left"></i></button> <!-- Flyttad utanför carousel-container -->
+            <div class="carousel-container">
+                <div class="box" id="box2"></div>
+                <div class="box" id="box3"></div>
+                <div class="box" id="box4"></div>
+                <p>&copy; 2025 Restaurant. All rights reserved.</p>
+            </div>
+            <button class="next-btn"><i class="fa-solid fa-arrow-right"></i></button> <!-- Flyttad utanför carousel-container -->
+        </div>
+    </div>
+    
+
+
     <!-- MAIN CONTENT -->
-    <main class="container mx-auto p-6">
+    <!--<main class="container mx-auto p-6">
         {% block content %}
-        <!-- Page-specific content will go here -->
+         Page-specific content will go here 
         {% endblock %}
-    </main>
+    </main>-->
 
     <!-- FOOTER -->
-    <footer class="bg-gray-800 text-white text-center p-4">
-        <p>&copy; 2025 Bite Restaurant. All rights reserved.</p>
+    <footer>
+        <p>&copy; 2025 Restaurant. All rights reserved.</p>
     </footer>
 
+
+    <script src="{% static 'js/index.js' %}"></script>
 </body>
 </html>
