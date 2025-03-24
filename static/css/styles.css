@@ -438,6 +438,11 @@ nav{
     border-top-width: 1px;
 }
 
+#reservationMessage {
+    padding: 10px;
+    font-size: 1rem;
+  }
+
 
 /* MAYBE TAKING THIS BACK */
 /*.btn:hover, .submit-btn:hover {

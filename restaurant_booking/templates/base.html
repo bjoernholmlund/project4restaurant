@@ -42,7 +42,7 @@
                 <div class="popup-content">
                     <span class="close" onclick="closePopup()">&times;</span>
                         <h2>Book a table</h2>
-                            <form action="{% url 'book_table' %}" method="POST">
+                            <form id="reservationForm" data-url="{% url 'book_table' %}">
                                {% csrf_token %}
             
                                <div class="input-box">
@@ -83,6 +83,7 @@
                                     <button type="submit" class="submit-btn">Reservate</button> 
             
                             </form>
+                            <div id="reservationMessage" class="hidden mt-4 text-green-600 font-semibold"></div>
                     </div>
                 </div>
         </div>

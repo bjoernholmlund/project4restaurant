@@ -90,3 +90,45 @@ window.onload = function() {
 document.querySelector('form').addEventListener('submit', function(event) {
     console.log('Formuläret skickas!');
 });
+
+//-------------------------
+
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("reservationForm");
+    const messageBox = document.getElementById("reservationMessage");
+    const bookTableUrl = form.dataset.url; // 👈 hämta URL från data-attribut
+
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+
+        fetch(bookTableUrl, {
+            method: "POST",
+            headers: {
+                'X-CSRFToken': formData.get('csrfmiddlewaretoken'),
+            },
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                messageBox.textContent = "Tack! Din bokning är registrerad.";
+                messageBox.classList.remove("hidden");
+                messageBox.classList.remove("text-red-600");
+                messageBox.classList.add("text-green-600");
+                form.reset();
+            } else {
+                messageBox.textContent = "Något gick fel. Försök igen.";
+                messageBox.classList.remove("hidden");
+                messageBox.classList.remove("text-green-600");
+                messageBox.classList.add("text-red-600");
+            }
+        })
+        .catch(error => {
+            messageBox.textContent = "Fel vid skickande.";
+            messageBox.classList.remove("hidden");
+            messageBox.classList.add("text-red-600");
+        });
+    });
+});
