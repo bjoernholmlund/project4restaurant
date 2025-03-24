@@ -2,6 +2,12 @@ from django.contrib import admin
 from .models import Table, Booking
 # Register your models here.
 
+class BookingInline(admin.TabularInline):
+    model = Booking
+    extra = 0
+    readonly_fields = ('guest_name', 'guest_email', 'date_time', 'number_of_guests', 'created_at')
+    ordering = ['date_time']
+
 @admin.register(Booking)
 class BookingAdmin(admin.ModelAdmin):
     list_display = ('guest_name', 'guest_email', 'date_time', 'number_of_guests', 'created_at')
@@ -11,3 +17,5 @@ class BookingAdmin(admin.ModelAdmin):
 @admin.register(Table)
 class TableAdmin(admin.ModelAdmin):
     list_display = ('table_number', 'capacity')
+    inlines = [BookingInline]
+

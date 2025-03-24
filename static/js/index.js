@@ -113,22 +113,42 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                messageBox.textContent = "Tack! Din bokning är registrerad.";
+                messageBox.textContent = "Thank you! Your reservation is registered.";
                 messageBox.classList.remove("hidden");
                 messageBox.classList.remove("text-red-600");
                 messageBox.classList.add("text-green-600");
                 form.reset();
             } else {
-                messageBox.textContent = "Något gick fel. Försök igen.";
+                let errorText = data.error || "Something went wrong.";
+                messageBox.innerHTML = `<p>${errorText}</p>`;
+        
+                // Om det finns förslag: skapa knappar
+                if (data.suggestions && data.suggestions.length > 0) {
+                    const suggestionButtons = data.suggestions.map(time => {
+                        return `<button type="button" class="suggestion-btn" data-time="${time}">${time}</button>`;
+                    }).join('');
+        
+                    messageBox.innerHTML += `
+                        <p>Choose a free time:</p>
+                        <div class="suggestions">${suggestionButtons}</div>
+                    `;
+        
+                    // Lägg till klickfunktioner
+                    document.querySelectorAll(".suggestion-btn").forEach(btn => {
+                        btn.addEventListener("click", function () {
+                            const selectedTime = this.dataset.time;
+                            const input = form.querySelector('input[name="date_time"]');
+                            input.value = selectedTime.replace(" ", "T");  // Anpassa till datetime-local format
+                            messageBox.classList.add("text-green-600");
+                            messageBox.textContent = `The time ${selectedTime} is selected. Click again to book!`;
+                        });
+                    });
+                }
+        
                 messageBox.classList.remove("hidden");
                 messageBox.classList.remove("text-green-600");
                 messageBox.classList.add("text-red-600");
             }
-        })
-        .catch(error => {
-            messageBox.textContent = "Fel vid skickande.";
-            messageBox.classList.remove("hidden");
-            messageBox.classList.add("text-red-600");
         });
-    });
-});
+    }); 
+}); 

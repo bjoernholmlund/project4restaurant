@@ -391,13 +391,15 @@ nav{
 
 /* Inputfält */
 .input-box {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     text-align: left;
 }
 
-.input-box input {
+.input-box input, 
+.input-box select {
     width: 100%;
-    padding: 10px;
+    padding: 6px 10px;
+    font-size: 0.9rem;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
@@ -437,6 +439,26 @@ nav{
     border-top-style: solid;
     border-top-width: 1px;
 }
+/* style for calenderbutttons*/
+.suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 10px;
+  }
+  
+  .suggestion-btn {
+    background-color: #eee;
+    border: 1px solid #ccc;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .suggestion-btn:hover {
+    background-color: #ccc;
+  }
 
 #reservationMessage {
     padding: 10px;
