@@ -74,6 +74,11 @@
                                     <span class="details">Date</span>
                                     <input type="datetime-local" name="date_time"required>
                                 </div>
+
+                                <div class="input-box">
+                                    <span class="details">Number of Guests</span>
+                                    <input type="number" name="number_of_guests" min="1" max="20" required>
+                                </div>
             
                                     <button type="submit" class="submit-btn">Reservate</button> 
             
@@ -124,3 +129,5 @@
     <script src="{% static 'js/index.js' %}"></script>
 </body>
 </html>
+
+<!--<form action="{% url 'book_table' %}" method="POST"></form>-->
