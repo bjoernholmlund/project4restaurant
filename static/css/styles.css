@@ -38,7 +38,9 @@ body{
     font-size: 3rem;
     font-weight: bold;
     color: white;
-    position: relative;
+    position: relative; 
+    outline: 10px#1a1a1a;
+    border: 10px #1a1a1a;
     
     /*min-width: 100vw; /* Gör att varje box tar upp hela skärmens bredd */
     /*height: 100vh;
@@ -75,6 +77,7 @@ body{
     transition: transform 0.5s ease-in-out;
     width: 300vw;
 }
+
 
 #box2{
     background-image: url(../img/bread_lighter.jpg);
@@ -338,7 +341,7 @@ nav{
 
 /*-----------------------------------*/
 
-/* button for reservation */
+
 
 /* Popup grundstil */
 .popup {
@@ -403,7 +406,7 @@ nav{
     border: 1px solid #ccc;
     border-radius: 5px;
 }
-
+/* button for reservation */
 /* Knappstil */
 .btn{
     background: transparent;

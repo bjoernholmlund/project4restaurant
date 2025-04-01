@@ -5,14 +5,30 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import CustomUserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 
 def register(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
+        
         if form.is_valid():
             form.save()
-            messages.success(request, "Registration successful! You can now log in.")
-            return redirect('login')
+            if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+                return JsonResponse({"success": True})
+            else:
+                messages.success(request, "Registration successful! You can now log in.")
+                return redirect('login')
+            
+        else:
+            if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+                # Returnera ett enkelt felmeddelande
+                errors = form.errors.as_json()
+                return JsonResponse({
+                    "success": False,
+                    "message": "❌ Please correct the highlighted errors.",
+                    "errors": errors
+                })
+    
     else:
         form = CustomUserCreationForm()
     return render(request, 'accounts/register.html', {'form': form})

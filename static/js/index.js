@@ -3,6 +3,8 @@ const hamMenu = document.querySelector('.ham-menu');
 const offScreenMenu = document.querySelector('.off-screen-menu');
 const menuLinks = document.querySelectorAll('.off-screen-menu a');
 
+
+/*carousel*/
 const carousel = document.querySelector('.carousel-container');
 const slides = document.querySelectorAll('.box');
 const prevBtn = document.querySelector('.prev-btn');
@@ -41,15 +43,13 @@ nextBtn.addEventListener('click', () => {
     updateCarousel();
 });
 
-
 hamMenu.addEventListener('click', () => {
     hamMenu.classList.toggle('active');
     offScreenMenu.classList.toggle('active');
 })
 
-
 /*-------*/
-/*modal - reservation button and form*/
+/*modal - reservation/register button and form*/
 function openPopup() {
     document.getElementById("popup").style.display = "flex";
 }
@@ -58,9 +58,21 @@ function closePopup() {
     document.getElementById("popup").style.display = "none";
 }
 
+function openRegisterPopup(){
+    document.getElementById("register-popup").style.display = "block";
+}
+
+function closeRegisterPopup() {
+    document.getElementById("register-popup").style.display = "none";
+}
+
 
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("popup").style.display = "none"; // Tvinga att det är dolt vid start
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("register-popup").style.display = "none"; // Tvinga att det är dolt vid start
 });
 
 // Event listener for the Reservation link
@@ -68,10 +80,11 @@ document.getElementById("reservation-link").addEventListener("click", function(e
     event.preventDefault(); // Prevent default anchor behavior (no scrolling or page refresh)
     openPopup(); // Show the reservation popup
 });
-//document.getElementById("register-link").addEventListener("click", function(event) {
-//    event.preventDefault(); // Prevent default anchor behavior (no scrolling or page refresh)
-//    openPopup(); // Show the reservation popup
-//});
+// Event listener for the Register link
+document.getElementById("register-link").addEventListener("click", function(event) {
+    event.preventDefault(); // Prevent default anchor behavior (no scrolling or page refresh)
+    openPopup(); // Show the reservation popup
+});
 
 
 // Stänger popup om användaren klickar utanför
@@ -94,7 +107,7 @@ window.onload = function() {
 
 
 
-//-------------------------
+//---- Bokningsformuläret ----------//
 
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("reservationForm");
@@ -164,4 +177,48 @@ document.addEventListener("DOMContentLoaded", function () {
             messageBox.classList.add("text-red-600");
         });
     });
+});
+
+//------- Registreringsformuläret--------//
+
+document.addEventListener('DOMContentLoaded', function () {
+    const regForm = document.getElementById('registerform');
+    const regMessage = document.getElementById('registerMessage');
+
+    if (regForm) {
+        regForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(regForm);
+            const csrfToken = formData.get('csrfmiddlewaretoken');
+
+            fetch(regForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-CSRFToken': csrfToken,
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                credentials: 'same-origin'
+            })
+            .then(res => res.json())
+            .then(data => {
+                regMessage.classList.remove('hidden', 'text-red-600', 'text-green-600');
+                if (data.success) {
+                    regMessage.textContent = "✅ Registration successful!";
+                    regMessage.classList.add('text-green-600');
+                    regForm.reset();
+                } else {
+                    regMessage.textContent = data.message || "❌ Registration failed.";
+                    regMessage.classList.add('text-red-600');
+                }
+            })
+            .catch(error => {
+                console.error('Registration error:', error);
+                regMessage.classList.remove('hidden', 'text-green-600');
+                regMessage.classList.add('text-red-600');
+                regMessage.textContent = "❌ An error occurred. Please try again.";
+            });
+        });
+    }
 });
