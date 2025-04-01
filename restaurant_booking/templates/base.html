@@ -10,13 +10,15 @@
 
 
 </head>
-<body class="bg-gray-100 text-gray-900">
+
+
     <!--Hamburger menu appearance-->
     <div class="off-screen-menu">
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#menu">Menu</a></li>
             <li><a href="#reservation" id="reservation-link">Reservation</a></li>
+            <li><a href="#register" onclick="event.preventDefault(); openRegisterPopup()">Register</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </div>
@@ -38,14 +40,14 @@
             <button type="button" class="btn" onclick="openPopup()">RESERVATION</button>
 
             <!-- Popup -->
-            <div class="popup" id="popup">
+            <div class="popup" id="popup" style="display: none;">
                 <div class="popup-content">
                     <span class="close" onclick="closePopup()">&times;</span>
                         <h2>Book a table</h2>
-                            <form id="reservationForm" data-url="{% url 'book_table' %}">
+                        <form id="reservationForm" method="post" action="{% url 'book_table' %}" data-url="{% url 'book_table' %}"> 
                                {% csrf_token %}
             
-                               <div class="input-box">
+                               <div class="input-box">  
                                     <span class="details">Full Name</span>
                                     <input type="text" name="guest_name" placeholder="Enter your name" required>
                                 </div>
@@ -80,15 +82,52 @@
                                     <input type="number" name="number_of_guests" min="1" max="20" required>
                                 </div>
             
-                                    <button type="submit" class="submit-btn">Reservate</button> 
-            
+                                <button type="submit" class="submit-btn">Reservate</button>
                             </form>
-                            <div id="reservationMessage" class="hidden mt-4 text-green-600 font-semibold"></div>
+                            <div id="reservationMessage" class="hidden mt-4 font-semibold"></div>
+                             <div id="suggestedTimes" class="hidden mt-2"></div>
                     </div>
                 </div>
-        </div>
+            </div>
         </nav>
     </header>
+
+
+
+    <div class="popup" id="register-popup">
+        <div class="popup-content">
+            <span class="close" onclick="closeRegisterPopup()">&times;</span>
+            <h2>Register</h2>
+            <form id="registerform" method="post" action="{% url 'register' %}">
+                {% csrf_token %}
+                <div class="input-box">
+                    <span class="details">Full Name</span>
+                    <input type="text" name="first_name" placeholder="Enter your name" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Last Name</span>
+                    <input type="text" name="last_name" placeholder="Enter your last name" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Email</span>
+                    <input type="email" name="email" placeholder="Enter your email" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Username</span>
+                    <input type="text" name="username" placeholder="Enter a username" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Password</span>
+                    <input type="password" name="password1" placeholder="Enter password" required>
+                </div>
+                <div class="input-box">
+                    <span class="details">Confirm Password</span>
+                    <input type="password" name="password2" placeholder="Confirm password" required>
+                </div>
+                <button type="submit" class="submit-btn">Create Account</button>
+            </form>
+        </div>
+    </div>
 
     <div class="container">
         <div class="box" id="box1">
@@ -125,7 +164,6 @@
     <footer>
         <p>&copy; 2025 Restaurant. All rights reserved.</p>
     </footer>
-
 
     <script src="{% static 'js/index.js' %}"></script>
 </body>

@@ -344,12 +344,12 @@ nav{
 .popup {
     display: none; /* Dölj popupen från början */
     position: fixed;
+    z-index: 999;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8); /* Mörklägger bakgrunden */
-    display: flex;
+    background-color: rgba(0, 0, 0, 0.8); /* Mörklägger bakgrunden */ 
     justify-content: center;
     align-items: center;
     border-radius: 10px;
@@ -463,8 +463,15 @@ nav{
 #reservationMessage {
     padding: 10px;
     font-size: 1rem;
-  }
+  } 
 
+  .text-green-600 {
+    color: #16a34a;
+}
+
+.text-red-600 {
+    color: #dc2626;
+}
 
 /* MAYBE TAKING THIS BACK */
 /*.btn:hover, .submit-btn:hover {

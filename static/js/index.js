@@ -58,6 +58,7 @@ function closePopup() {
     document.getElementById("popup").style.display = "none";
 }
 
+
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("popup").style.display = "none"; // Tvinga att det är dolt vid start
 });
@@ -67,6 +68,10 @@ document.getElementById("reservation-link").addEventListener("click", function(e
     event.preventDefault(); // Prevent default anchor behavior (no scrolling or page refresh)
     openPopup(); // Show the reservation popup
 });
+//document.getElementById("register-link").addEventListener("click", function(event) {
+//    event.preventDefault(); // Prevent default anchor behavior (no scrolling or page refresh)
+//    openPopup(); // Show the reservation popup
+//});
 
 
 // Stänger popup om användaren klickar utanför
@@ -87,16 +92,20 @@ window.onload = function() {
     }, 1000); // Fördröjningen innan animationen startar
 };
 
-document.querySelector('form').addEventListener('submit', function(event) {
-    console.log('Formuläret skickas!');
-});
+
 
 //-------------------------
 
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("reservationForm");
     const messageBox = document.getElementById("reservationMessage");
-    const bookTableUrl = form.dataset.url; // 👈 hämta URL från data-attribut
+
+    if (!form || !messageBox) {
+        console.warn("reservationForm or messageBox not found in DOM");
+        return;
+    }
+
+    const bookTableUrl = form.dataset.url;
 
     form.addEventListener("submit", function (e) {
         e.preventDefault();
@@ -107,48 +116,52 @@ document.addEventListener("DOMContentLoaded", function () {
             method: "POST",
             headers: {
                 'X-CSRFToken': formData.get('csrfmiddlewaretoken'),
+                'X-Requested-With': 'XMLHttpRequest'
             },
             body: formData
         })
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                messageBox.textContent = "Thank you! Your reservation is registered.";
-                messageBox.classList.remove("hidden");
-                messageBox.classList.remove("text-red-600");
+                messageBox.textContent = "✅ Thank you! Your reservation is registered.";
+                messageBox.classList.remove("hidden", "text-red-600");
                 messageBox.classList.add("text-green-600");
                 form.reset();
             } else {
-                let errorText = data.error || "Something went wrong.";
+                let errorText = data.message || "❌ Something went wrong.";
                 messageBox.innerHTML = `<p>${errorText}</p>`;
-        
-                // Om det finns förslag: skapa knappar
-                if (data.suggestions && data.suggestions.length > 0) {
-                    const suggestionButtons = data.suggestions.map(time => {
+
+                if (data.suggested_times && data.suggested_times.length > 0) {
+                    const suggestionButtons = data.suggested_times.map(time => {
                         return `<button type="button" class="suggestion-btn" data-time="${time}">${time}</button>`;
                     }).join('');
-        
+
                     messageBox.innerHTML += `
                         <p>Choose a free time:</p>
                         <div class="suggestions">${suggestionButtons}</div>
                     `;
-        
-                    // Lägg till klickfunktioner
+
                     document.querySelectorAll(".suggestion-btn").forEach(btn => {
                         btn.addEventListener("click", function () {
                             const selectedTime = this.dataset.time;
                             const input = form.querySelector('input[name="date_time"]');
-                            input.value = selectedTime.replace(" ", "T");  // Anpassa till datetime-local format
+                            input.value = selectedTime.replace(" ", "T");
+                            messageBox.classList.remove("text-red-600");
                             messageBox.classList.add("text-green-600");
-                            messageBox.textContent = `The time ${selectedTime} is selected. Click again to book!`;
+                            messageBox.textContent = `✅ The time ${selectedTime} is selected. Click again to book!`;
                         });
                     });
                 }
-        
-                messageBox.classList.remove("hidden");
-                messageBox.classList.remove("text-green-600");
+
+                messageBox.classList.remove("hidden", "text-green-600");
                 messageBox.classList.add("text-red-600");
             }
+        })
+        .catch(error => {
+            console.error("Fetch error:", error);
+            messageBox.textContent = "❌ Something went wrong. Please try again.";
+            messageBox.classList.remove("hidden", "text-green-600");
+            messageBox.classList.add("text-red-600");
         });
-    }); 
-}); 
+    });
+});

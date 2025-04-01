@@ -1,14 +1,18 @@
 from django.shortcuts import render, redirect
-from django.contrib import messages
-from .models import Table, Booking
-from .forms import BookingForm
 from django.http import JsonResponse
+from .models import Table, Booking
+from django.utils import timezone
 from django.utils.dateparse import parse_datetime
 from datetime import timedelta
-from django.utils import timezone
+from django.contrib import messages
+from django.db.models import Q
 
 def book_table(request):
+    tables = Table.objects.all()
+
     if request.method == "POST":
+        is_ajax = request.headers.get('x-requested-with') == 'XMLHttpRequest'
+
         try:
             name = request.POST.get("guest_name")
             email = request.POST.get("guest_email")
@@ -21,57 +25,65 @@ def book_table(request):
 
             if timezone.is_naive(naive_date):
                 date_time_obj = timezone.make_aware(naive_date)
-            else:    
+            else:
                 date_time_obj = naive_date
 
+            # Bokningen gäller i 2 timmar
             end_time = date_time_obj + timedelta(hours=2)
-            
-            #Doublereservations
-            overlapping_bookings = Booking.objects.filter(
+
+            # Kontrollera överlappande bokningar
+            overlapping = Booking.objects.filter(
                 table=table,
                 date_time__lt=end_time,
-                date_time__gte=date_time_obj - timedelta(hours=2)
+                date_time__gt=date_time_obj - timedelta(hours=2)
             )
 
-            if overlapping_bookings.exists():
-                suggestions = []
-                for i in range(1, 5):
-                    alt_start = end_time + timedelta(hours=2 * i)
-                    if timezone.is_naive(alt_start):
-                        alt_start = timezone.make_aware(alt_start)
-                    alt_end = alt_start + timedelta(hours=2)
-
-                    conflict = Booking.objects.filter(
-                        table=table,
-                        date_time__lt=alt_end,
-                        date_time__gte=alt_start
-                    ).exists()
-
-                    if not conflict:
-                        suggestions.append(alt_start.strftime('%Y-%m-%d %H:%M'))
-
-                return JsonResponse({
-                    'sucess': False, 
-                    'error': 'The table is already booked at that time.',
-                    'suggestions': suggestions
+            if overlapping.exists():
+                # Skicka förslag på nästa tillgängliga tider
+                suggestions = [
+                    (date_time_obj + timedelta(hours=2)).strftime("%Y-%m-%dT%H:%M"),
+                    (date_time_obj + timedelta(hours=4)).strftime("%Y-%m-%dT%H:%M"),
+                ]
+                if is_ajax:
+                    return JsonResponse({
+                        "success": False,
+                        "message": "❌ This time is already booked.",
+                        "suggested_times": suggestions
                     })
+                else:
+                    messages.error(request, "This time is already booked.")
+                    return render(request, 'book_table.html', {'tables': tables})
 
-            #Making a booking!
+            # Skapa bokningen
             Booking.objects.create(
                 guest_name=name,
                 guest_email=email,
                 table=table,
-                date_time=date_time,
+                date_time=date_time_obj,
                 number_of_guests=number_of_guests
             )
 
-            return JsonResponse({'success': True})
+            if is_ajax:
+                return JsonResponse({
+                    "success": True,
+                    "message": "✅ Thank you! Your reservation is registered."
+                })
+            else:
+                messages.success(request, "Booking successful!")
+                return redirect('home')
 
         except Exception as e:
-            print(e)  # för att felsöka i terminalen
-            return JsonResponse({'success': False, 'error': 'Server error'})
+            print("Booking error:", e)
+            if is_ajax:
+                return JsonResponse({
+                    "success": False,
+                    "message": "❌ Server error occurred."
+                })
+            else:
+                messages.error(request, "Something went wrong.")
+                return render(request, 'book_table.html', {'tables': tables})
 
-    return JsonResponse({'success': False, 'error': 'Invalid request'})
-    
-    
-  
+    return render(request, 'book_table.html', {'tables': tables})
+def home(request):
+    tables = Table.objects.all()  # om du skickar bord till startsidan
+    return render(request, 'index.html', {'tables': tables})
