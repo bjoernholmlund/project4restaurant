@@ -29,7 +29,7 @@ SECRET_KEY = "django-insecure-fdb3ssw&=@!eg*2tl3#p@+exow%4#we^d6&!af%7-row01qf+k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'https://my-restaurant-booking-project-9719877ce119.herokuapp.com/', ".herokuapp.com", "*"]
+ALLOWED_HOSTS = ['127.0.0.1', 'my-restaurant-booking-project-9719877ce119.herokuapp.com/', ".herokuapp.com", "*", 'localhost']
 
 
 # Application definition
@@ -88,9 +88,6 @@ DATABASES = {
         'PASSWORD': ('npg_qhiCm3l2OkVx'),
         'HOST': ('ep-small-mud-a2o1p2wk.eu-central-1.aws.neon.tech'),
         'PORT': ('5432'),
-        'OPTIONS': {
-            'sslmode': 'require',
-        },
     }
 }
 
