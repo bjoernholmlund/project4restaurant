@@ -1,0 +1,685 @@
+html, body{
+    overflow-x: hidden; /* Döljer horisontell scrollbar */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body{
+    background-size: cover;
+    background-position: center center;
+    background-attachment: scroll;  /* Använd 'scroll' istället för 'fixed' på små skärmar */
+    background-repeat: no-repeat;
+    color: #f8f8f8;
+    font-family: 'Poppins', sans-serif;
+    flex: 1;
+}
+
+/* ----------------------------------- */
+.container{
+    display: flex;
+    flex-direction: column;
+    height: 2000px;
+}
+
+.box{
+    min-width: 100vw; /* Varje bild tar hela skärmens bredd */
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+    position: relative; 
+    outline: 10px#1a1a1a;
+    border: 10px #1a1a1a;
+    
+    /*min-width: 100vw; /* Gör att varje box tar upp hela skärmens bredd */
+    /*height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+     /* Snäpper fast varje sektion vid scroll */
+    /*background-size: cover;
+    background-position: center;*/
+}
+
+#box1{
+    background-image: url(../img/strong_vignette_image_1.jpg);
+    background-size: cover; /* Ensures the image covers the full area */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents tiling */
+    min-width: 100vw; /* Makes the image take up the entire width of the screen */
+    height: 100vh; /* Makes the first box take up the entire screen */
+    
+}
+
+.carousel-wrapper{
+    position: relative; /* Viktigt för att knapparna ska ha en referenspunkt */
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-container{
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 300vw;
+}
+
+
+#box2{
+    background-image: url(../img/strong_vignette_image_2.jpg);
+    min-width: 100vw; /* En bild tar hela skärmen */
+    height: 100vh;
+    background-size: contain;
+    background-position: center;
+    /*position: relative; /* Viktigt för att knapparna ska placeras rätt */
+    flex: 0 0 100vw 
+}
+
+#box3 {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+  }
+
+/* Halvorna */
+#box3 .half {
+    flex: 1;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  /* Vänstra bilden */
+  #box3 .left-img {
+    background-image: url('../img/soft_vignette_image_2.jpg'); /* byt till din vänsterbild */
+  }
+  
+  /* Högra bilden */
+  #box3 .right-img {
+    background-image: url('../img/anise-1971492_1280.jpg'); /* byt till din högerbild */
+  }  
+  
+#box4{
+    position: relative;
+    background-image: url('../img/after-the-rain-8026269_1280.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  
+    width: 100vw;
+    height: 100vh;
+    flex: 0 0 100vw;
+    overflow: hidden;
+}
+
+#box5 {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+  }
+
+/* Halvorna */
+#box5 .half {
+    flex: 1;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  /* Vänstra bilden */
+  #box5 .left-img {
+    background-image: url('../img/orange_cake_mild_vignette.jpg'); /* byt till din vänsterbild */
+  }
+  
+  /* Högra bilden */
+  #box5 .right-img {
+    background-image: url('../img/chocolate_squares_mild_vignette.jpg'); /* byt till din högerbild */
+  }
+
+#box6{
+    background-image: url('../img/bbq-4373644_1280.jpg');
+    min-width: 100vw; /* En bild tar hela skärmen */
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative; /* Viktigt för att knapparna ska placeras rätt */
+    flex: 0 0 100vw
+}
+
+
+#box7 {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+  }
+
+/* Halvorna */
+#box7 .half {
+    flex: 1;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  /* Vänstra bilden */
+  #box7 .left-img {
+    background-image: url('../img/fish-7910906_1280.jpg'); /* byt till din vänsterbild */
+  }
+  
+  /* Högra bilden */
+  #box7 .right-img {
+    background-image: url('../img/black-caviar-7472596_1280.jpg'); /* byt till din högerbild */
+  }
+
+
+
+/* Navigationsknappar */
+/*.prev-btn, .next-btn {
+    position: absolute;
+    top: 50%; /* Flytta ner knapparna om det behövs */
+/*    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 2rem;
+    padding: 10px 20px;
+    cursor: pointer;
+    z-index: 1;
+    border-radius: 5px;
+    background: red !important;
+}
+
+/* Placering av knappar */
+/*.prev-btn { 
+    left: 5%; 
+}
+.next-btn { 
+    right: 5%; 
+}
+
+/* Hover-effekt */
+/*.prev-btn:hover, .next-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+}*/
+
+button {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    padding: 0;
+  }
+  
+  /* SVG justering */
+  svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  
+  /* Gemensam pilstil */
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 50px;
+    cursor: pointer;
+    z-index: 10;
+    transition: opacity 0.3s ease;
+    opacity: 0.6;
+  }
+  
+  .arrow:hover {
+    opacity: 1;
+  }
+  
+  /* PILPOSITIONERING */
+  .left {
+    left: 20px;
+  }
+  
+  .right {
+    right: 20px;
+  }
+  
+  /* PILANIMATIONER */
+  .arrow polyline {
+    stroke: #fff;
+    stroke-width: 1;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: stroke-width 0.3s ease;
+  }
+  
+  /* Hover-effekt */
+  .arrow:hover polyline,
+  .arrow:focus polyline {
+    stroke-width: 3;
+  }
+  
+  /* Klick-effekt */
+  .arrow:active polyline {
+    stroke-width: 6;
+    transition: stroke-width 100ms ease-in-out;
+  }
+
+
+/*-----------------------------------*/
+
+header{
+    position: absolute;
+    /*padding: 50px;*/
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: transparent;
+    z-index: 10;
+}
+
+/*.logo-container{
+    flex-grow: 1; /* Gör så att den centreras mellan de andra elementen */
+    /*display: flex;
+    justify-content: center;
+}*/
+
+.logo-bite{
+    background: url(../img/bite_transparent_v2.png) no-repeat center;
+    width: 200px; /* Justera storleken efter behov */
+    height: 100px; /* Justera efter bildens proportioner */
+    background-size: contain; /* Ser till att bilden anpassas till div:en */
+    display: block;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+nav{
+    background-color: transparent;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    padding: 20px;
+    /*padding: 1rem;
+    display: flex;*/
+}
+
+nav a{
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+nav a:hover{
+    text-decoration: underline;
+}
+
+main{
+    flex: 1;
+}
+
+footer{
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    text-align: center;
+    padding: 0.3rem;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+h1{
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    color: white;;
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    color: white;
+}
+
+.center-text{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Justera för att exakt centrera */
+    z-index: 2;
+}
+.center-text h1{
+    font-size: 3rem;
+}
+
+.center-text p{
+    font-size: 1.5rem;
+    color: white;
+}
+
+.hidden{
+    opacity: 0;
+    transition: opacity 3s ease-in-out;
+}
+
+.visible{
+    opacity: 1;
+    transition: opacity 3s ease-in-out;
+}
+
+.carousel-wrapper,
+.carousel-container,
+.container {
+    overflow: visible !important; /* Låter hamburgermenyn vara synlig */
+}
+
+
+/*HAMBURGER-MENU!*/
+/* off-screen-menu*/
+.off-screen-menu {
+    background-color: #1a1a1a;
+    color: #f8f8f8;
+    height: 100vh;
+    width: 100%;
+    max-width: 250px;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: center;
+    font-size: 1rem;
+    transition: .3s ease;
+    padding-top: 100px;
+    z-index: 10;
+}
+
+.off-screen-menu.active{
+    left: 0;
+}
+
+nav{
+    padding: 1rem;
+    display: flex;
+}    
+
+.ham-menu{
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    margin-right: auto;
+    z-index: 9999;
+}
+
+.ham-menu span{
+    height: 3px;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    border-radius: 25px; 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: .3s ease;
+}
+
+.ham-menu span:nth-child(1){
+    top: 25%;
+}
+
+.ham-menu span:nth-child(3){
+    top: 75%;
+} 
+
+.ham-menu.active span:nth-child(1){
+    top: 50%;
+    transform: rotate(45deg);
+}
+.ham-menu.active span:nth-child(2){
+    opacity: 0;
+}
+.ham-menu.active span:nth-child(3){
+    top: 50%;
+    transform: rotate(-45deg);
+}
+
+.menu-open .ham-menu {
+    z-index: 1001 !important;
+}
+
+/*-----------------------------------*/
+
+
+
+/*-----------------------------------*/
+
+
+
+/* Popup grundstil */
+.popup {
+    display: none; /* Dölj popupen från början */
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Mörklägger bakgrunden */ 
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2); /* Lägger till en liten skugga, bakom formulär! */
+}
+
+.container-nav{
+    display: flex;
+    justify-content: flex-end; /* Flyttar knappen till höger */
+    padding: 20px; /* Lägg till lite padding om det behövs */
+    background-color: transparent;
+}
+
+/* Innehåll för popup */
+.popup-content{
+    background: white;
+    color: black;
+    padding: 20px;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.popup-content h2 {
+    color: black;
+}
+
+/* Stängningsknapp */
+.close {
+    position: absolute;
+    top: 50px;
+    right: 450px;
+    font-size: 24px;
+    cursor: pointer;
+    color: black;
+}
+
+/* Inputfält */
+.input-box {
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.input-box input, 
+.input-box select {
+    width: 100%;
+    padding: 6px 10px;
+    font-size: 0.9rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+/* button for reservation */
+/* Knappstil */
+.btn{
+    background: transparent;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    border: white;
+    border-bottom-color:(255, 255, 255);
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-image-outset: 0;
+    border-image-repeat: stretch;
+    border-image-slice: 100%;
+    border-image-source: none;
+    border-image-width: 1;
+    border-left-color: (255, 255, 255);  
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-right-color: (255, 255, 255);
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-top-color: (255, 255, 255);
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-top-style: solid;
+    border-top-width: 1px;
+}
+/* style for calenderbutttons*/
+.suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 10px;
+  }
+  
+  .suggestion-btn {
+    background-color: #eee;
+    border: 1px solid #ccc;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  
+  .suggestion-btn:hover {
+    background-color: #ccc;
+  }
+
+#reservationMessage {
+    padding: 10px;
+    font-size: 1rem;
+  } 
+
+  .text-green-600 {
+    color: #16a34a;
+}
+
+.text-red-600 {
+    color: #dc2626;
+}
+
+/* MAYBE TAKING THIS BACK */
+/*.btn:hover, .submit-btn:hover {
+    background: #444;
+}*/
+/*-----------------------------------*/
+
+@media (max-width: 768px) {
+    /* Gör att header och innehåll passar på mobilen */
+    header {
+        padding: 30px;
+    }
+
+    .logo-bite {
+        width: 150px;
+        height: 75px;
+    }
+
+    nav {
+        flex-direction: column;  /* Länkarna staplas vertikalt på mindre skärmar */
+        padding: 10px;
+    }
+
+    nav a {
+        margin: 10px 0;  /* Öka marginalen för att få mer utrymme mellan länkar */
+    }
+    
+    .btn {
+        display: none; /* Döljer knappen på skärmar som är 768px eller mindre */
+    }
+}
+
+
+@media (max-width: 480px) {
+    body {
+        font-size: 14px; /* Minska textstorleken på riktigt små enheter */
+    }
+
+    .center-text h1 {
+        font-size: 1.5rem;  /* Minska storleken på texten */
+    }
+
+    .center-text p {
+        font-size: 1rem;  /* Minska storleken på texten */
+    }
+
+    .home h1 {
+        font-size: 2rem;
+    }
+
+    .home p {
+        font-size: 1.2rem;
+    }
+}
