@@ -53,7 +53,7 @@ body{
 }
 
 #box1{
-    background-image: url(../img/restaurant_darkened.png);
+    background-image: url(../img/strong_vignette_image_1.jpg);
     background-size: cover; /* Ensures the image covers the full area */
     background-position: center; /* Centers the image */
     background-repeat: no-repeat; /* Prevents tiling */
@@ -80,43 +80,131 @@ body{
 
 
 #box2{
-    background-image: url(../img/bread_lighter.jpg);
+    background-image: url(../img/strong_vignette_image_2.jpg);
     min-width: 100vw; /* En bild tar hela skärmen */
     height: 100vh;
-    background-size: cover;
+    background-size: contain;
     background-position: center;
     /*position: relative; /* Viktigt för att knapparna ska placeras rätt */
-    flex: 0 0 100vw
-    
+    flex: 0 0 100vw 
 }
 
-#box3{
-    background-image: url(../img/cinnamon-sticks.jpg);
-    min-width: 100vw; /* En bild tar hela skärmen */
+#box3 {
+    display: flex;
+    width: 100vw;
     height: 100vh;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+  }
+
+/* Halvorna */
+#box3 .half {
+    flex: 1;
+    height: 100%;
     background-size: cover;
     background-position: center;
-    /*position: relative; /* Viktigt för att knapparna ska placeras rätt */
-    flex: 0 0 100vw
-
-}
-
+    background-repeat: no-repeat;
+  }
+  
+  /* Vänstra bilden */
+  #box3 .left-img {
+    background-image: url('../img/soft_vignette_image_2.jpg'); /* byt till din vänsterbild */
+  }
+  
+  /* Högra bilden */
+  #box3 .right-img {
+    background-image: url('../img/anise-1971492_1280.jpg'); /* byt till din högerbild */
+  }  
+  
 #box4{
-    background-image: url(../img/orange-cake.jpg);
+    position: relative;
+    background-image: url('../img/after-the-rain-8026269_1280.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  
+    width: 100vw;
+    height: 100vh;
+    flex: 0 0 100vw;
+    overflow: hidden;
+}
+
+#box5 {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+  }
+
+/* Halvorna */
+#box5 .half {
+    flex: 1;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  /* Vänstra bilden */
+  #box5 .left-img {
+    background-image: url('../img/orange_cake_mild_vignette.jpg'); /* byt till din vänsterbild */
+  }
+  
+  /* Högra bilden */
+  #box5 .right-img {
+    background-image: url('../img/chocolate_squares_mild_vignette.jpg'); /* byt till din högerbild */
+  }
+
+#box6{
+    background-image: url('../img/bbq-4373644_1280.jpg');
     min-width: 100vw; /* En bild tar hela skärmen */
     height: 100vh;
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     position: relative; /* Viktigt för att knapparna ska placeras rätt */
     flex: 0 0 100vw
-    
 }
 
+
+#box7 {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+  }
+
+/* Halvorna */
+#box7 .half {
+    flex: 1;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  /* Vänstra bilden */
+  #box7 .left-img {
+    background-image: url('../img/fish-7910906_1280.jpg'); /* byt till din vänsterbild */
+  }
+  
+  /* Högra bilden */
+  #box7 .right-img {
+    background-image: url('../img/black-caviar-7472596_1280.jpg'); /* byt till din högerbild */
+  }
+
+
+
 /* Navigationsknappar */
-.prev-btn, .next-btn {
+/*.prev-btn, .next-btn {
     position: absolute;
     top: 50%; /* Flytta ner knapparna om det behövs */
-    transform: translateY(-50%);
+/*    transform: translateY(-50%);
     background: rgba(0, 0, 0, 0.5);
     color: white;
     border: none;
@@ -129,7 +217,7 @@ body{
 }
 
 /* Placering av knappar */
-.prev-btn { 
+/*.prev-btn { 
     left: 5%; 
 }
 .next-btn { 
@@ -137,9 +225,74 @@ body{
 }
 
 /* Hover-effekt */
-.prev-btn:hover, .next-btn:hover {
+/*.prev-btn:hover, .next-btn:hover {
     background: rgba(0, 0, 0, 0.8);
-}
+}*/
+
+button {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    padding: 0;
+  }
+  
+  /* SVG justering */
+  svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  
+  /* Gemensam pilstil */
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 50px;
+    cursor: pointer;
+    z-index: 10;
+    transition: opacity 0.3s ease;
+    opacity: 0.6;
+  }
+  
+  .arrow:hover {
+    opacity: 1;
+  }
+  
+  /* PILPOSITIONERING */
+  .left {
+    left: 20px;
+  }
+  
+  .right {
+    right: 20px;
+  }
+  
+  /* PILANIMATIONER */
+  .arrow polyline {
+    stroke: #fff;
+    stroke-width: 1;
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: stroke-width 0.3s ease;
+  }
+  
+  /* Hover-effekt */
+  .arrow:hover polyline,
+  .arrow:focus polyline {
+    stroke-width: 3;
+  }
+  
+  /* Klick-effekt */
+  .arrow:active polyline {
+    stroke-width: 6;
+    transition: stroke-width 100ms ease-in-out;
+  }
+
 
 /*-----------------------------------*/
 
@@ -204,11 +357,12 @@ main{
 }
 
 footer{
-    color: black;
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
     text-align: center;
-    padding: 10px 0;
-    margin-top: auto;
-    width: 100%;
+    padding: 0.3rem;
+    font-size: 0.9rem;
+    opacity: 0.9;
 }
 
 h1{

@@ -15,7 +15,7 @@
     <!--Hamburger menu appearance-->
     <div class="off-screen-menu">
         <ul>
-            <li><a href="#home">Home</a></li>
+            <li><a href="{% url 'home' %}"">Home</a></li>
             <li><a href="#menu">Menu</a></li>
             <li><a href="#reservation" id="reservation-link">Reservation</a></li>
             <li><a href="#register" id="register-link">Register</a></li>
@@ -142,15 +142,36 @@
     
         <!-- Karusellen med knappar -->
         <div class="carousel-wrapper">
-            <button class="prev-btn"><i class="fa-solid fa-arrow-left"></i></button> <!-- Flyttad utanför carousel-container -->
+            <button class="arrow left prev-btn" id="prevSlide">
+                <svg width="60px" height="80px" viewBox="0 0 50 80">
+                  <polyline fill="none" stroke="#FFFFFF" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+                    points="45.63,75.8 0.375,38.087 45.63,0.375" />
+                </svg>
               </button>
             <div class="carousel-container">
                 <div class="box" id="box2"></div>
-                <div class="box" id="box3"></div>
+                <div class="box" id="box3">
+                    <div class="half left-img"></div>
+                    <div class="half right-img"></div>
+                </div>
                 <div class="box" id="box4"></div>
+                <div class="box" id="box5">
+                    <div class="half left-img"></div>
+                    <div class="half right-img"></div>
+                </div>
+                <div class="box" id="box6"></div>
+                <div class="box" id="box7">
+                    <div class="half left-img"></div>
+                    <div class="half right-img"></div>
+                </div>
                 <p>&copy; 2025 Restaurant. All rights reserved.</p>
             </div>
-            <button class="next-btn"><i class="fa-solid fa-arrow-right"></i></button> <!-- Flyttad utanför carousel-container -->
+            <button class="arrow right next-btn" id="nextSlide">
+                <svg width="60px" height="80px" viewBox="0 0 50 80">
+                  <polyline fill="none" stroke="#FFFFFF" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+                    points="0.375,0.375 45.63,38.087 0.375,75.8" />
+                </svg>
+              </button>
         </div>
     </div>
     
