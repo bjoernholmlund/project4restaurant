@@ -179,7 +179,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-//------- Registreringsformuläret--------//
+//------- Registreringsformuläret och länk ner till carousel--------//
 
 document.addEventListener('DOMContentLoaded', function () {
     const regForm = document.getElementById('registerform');
@@ -219,6 +219,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 regMessage.classList.add('text-red-600');
                 regMessage.textContent = "❌ An error occurred. Please try again.";
             });
+        });
+    }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+    const menuLink = document.getElementById("menu-link");
+    const carouselSection = document.getElementById("carousel-section");
+
+    if (menuLink && carouselSection) {
+        menuLink.addEventListener("click", function (e) {
+            e.preventDefault();
+            carouselSection.scrollIntoView({ behavior: "smooth" });
         });
     }
 });

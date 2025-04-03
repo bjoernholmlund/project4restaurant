@@ -64,9 +64,9 @@ body{
 
 .carousel-wrapper{
     position: relative; /* Viktigt för att knapparna ska ha en referenspunkt */
+    overflow: hidden;
     width: 100vw;
     height: 100vh;
-    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -119,7 +119,7 @@ body{
   
 #box4{
     position: relative;
-    background-image: url('../img/after-the-rain-8026269_1280.jpg');
+    background-image: url('../img/mushrooms_mild_vignette.jpg');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -159,7 +159,7 @@ body{
   }
 
 #box6{
-    background-image: url('../img/bbq-4373644_1280.jpg');
+    background-image: url('../img/grill_mild_vignette.jpg');
     min-width: 100vw; /* En bild tar hela skärmen */
     height: 100vh;
     background-size: cover;
@@ -190,12 +190,12 @@ body{
   
   /* Vänstra bilden */
   #box7 .left-img {
-    background-image: url('../img/fish-7910906_1280.jpg'); /* byt till din vänsterbild */
+    background-image: url('../img/fish_mild_vignette.jpg'); /* byt till din vänsterbild */
   }
   
   /* Högra bilden */
   #box7 .right-img {
-    background-image: url('../img/black-caviar-7472596_1280.jpg'); /* byt till din högerbild */
+    background-image: url('../img/caviar_mild_vignette.jpg'); /* byt till din högerbild */
   }
 
 
