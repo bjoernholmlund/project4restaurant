@@ -11,11 +11,12 @@
 
 </head>
 
-
+<body>
+    
     <!--Hamburger menu appearance-->
     <div class="off-screen-menu">
         <ul>
-            <li><a href="{% url 'home' %}"">Home</a></li>
+            <li><a href="#top" id="home-link">Welcome</a></li>
             <li><a href="#carousel-section" id="menu-link">Menu</a></li>
             <li><a href="#reservation" id="reservation-link">Reservation</a></li>
             <li><a href="#register" id="register-link">Register</a></li>
@@ -94,6 +95,7 @@
     </header>
 
 
+    
 
     <div class="popup" id="register-popup">
         <div class="popup-content">
@@ -131,7 +133,7 @@
         </div>
     </div>
 
-    <div class="container">
+    <div class="container" id="top">
         <div class="box" id="box1">
             <div class="center-text">
                 <div class="big-text"><h1 id="delayed-text" class="hidden">Welcome to Bite</h1></div>
@@ -139,17 +141,56 @@
 
         </div>
 
-    
         <!-- Karusellen med knappar -->
         <div id="carousel-section" class="carousel-wrapper">
+            <div id="menu-description" class="menu-overlay">
+                <p>
+                  Our fixed menu is 4 800 SEK per guest plus your choice of beverages.<br>
+                  It is the same menu for lunch and dinner.<br>
+                  Beverage pairing, alcoholic and non-alcoholic, is available.
+                </p>
+                <div id="menu-popup" class="popup menu-popup-style" style="display: none;">
+                    <div class="popup-content">
+                      <span class="close" onclick="closeMenuPopup()">&times;</span>
+                      <h2 class="menu-title">Vår Meny</h2>
+                      <div class="menu-columns">
+                        <div class="menu-category">
+                          <h3>Förrätter</h3>
+                          <ul>
+                            <li><span class="dish-name">Carpaccio</span><span class="dots"></span><span class="price">145 kr</span></li>
+                            <li><span class="dish-name">Skagenröra</span><span class="dots"></span><span class="price">135 kr</span></li>
+                          </ul>
+                        </div>
+                        <div class="menu-category">
+                          <h3>Varmrätter</h3>
+                          <ul>
+                            <li><span class="dish-name">Oxfilé med tryffelsky</span><span class="dots"></span><span class="price">285 kr</span></li>
+                            <li><span class="dish-name">Grillad lax</span><span class="dots"></span><span class="price">265 kr</span></li>
+                          </ul>
+                        </div>
+                        <div class="menu-category">
+                          <h3>Desserter</h3>
+                          <ul>
+                            <li><span class="dish-name">Crème brûlée</span><span class="dots"></span><span class="price">95 kr</span></li>
+                            <li><span class="dish-name">Chokladfondant</span><span class="dots"></span><span class="price">105 kr</span></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <a href="#" id="show-full-menu" class="underline text-sm mt-2 inline-block">See full menu</a>
+            </div>
             <button class="arrow left prev-btn" id="prevSlide">
                 <svg width="60px" height="80px" viewBox="0 0 50 80">
                   <polyline fill="none" stroke="#FFFFFF" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
                     points="45.63,75.8 0.375,38.087 45.63,0.375" />
                 </svg>
-              </button>
+              </button> 
             <div class="carousel-container">
-                <div class="box" id="box2"></div>
+                <div class="box" id="box7">
+                    <div class="half left-img"></div>
+                    <div class="half right-img"></div>
+                </div>
                 <div class="box" id="box3">
                     <div class="half left-img"></div>
                     <div class="half right-img"></div>
@@ -159,10 +200,7 @@
                     <div class="half left-img"></div>
                     <div class="half right-img"></div>
                 </div>
-                <div class="box" id="box6"></div>
-                <div class="box" id="box7">
-                    <div class="half left-img"></div>
-                    <div class="half right-img"></div>
+                <div class="box" id="box6">
                 </div>
                 <p>&copy; 2025 Restaurant. All rights reserved.</p>
             </div>
@@ -175,6 +213,7 @@
         </div>
     </div>
     
+
 
 
     <!-- MAIN CONTENT -->

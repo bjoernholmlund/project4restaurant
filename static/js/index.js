@@ -106,6 +106,27 @@ window.onload = function() {
 };
 
 
+//----------------------Så man åker upp på sida----------//
+
+document.addEventListener("DOMContentLoaded", function () {
+    const homeLink = document.getElementById("home-link");
+    const topSection = document.getElementById("top");
+
+    if (homeLink && topSection) {
+        homeLink.addEventListener("click", function (e) {
+            e.preventDefault(); // förhindra vanlig hopp-länk
+            topSection.scrollIntoView({
+                behavior: "smooth"
+            });
+
+            // Stäng hamburgermenyn om öppen
+            document.querySelector('.off-screen-menu').classList.remove('active');
+            document.querySelector('.ham-menu').classList.remove('active');
+        });
+    }
+});
+
+
 
 //---- Bokningsformuläret ----------//
 
@@ -231,6 +252,34 @@ document.addEventListener("DOMContentLoaded", function () {
         menuLink.addEventListener("click", function (e) {
             e.preventDefault();
             carouselSection.scrollIntoView({ behavior: "smooth" });
+
+            document.querySelector('.off-screen-menu').classList.remove('active');
+            document.querySelector('.ham-menu').classList.remove('active');
         });
     }
 });
+
+//--------------------MENU-----------------//
+function openMenuPopup() {
+    document.getElementById("menu-popup").style.display = "flex";
+  }
+  
+  function closeMenuPopup() {
+    document.getElementById("menu-popup").style.display = "none";
+  }
+  
+  document.addEventListener("DOMContentLoaded", function () {
+    const link = document.getElementById("show-full-menu");
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      openMenuPopup();
+    });
+  
+    // Stänger popup om du klickar utanför innehållet
+    window.addEventListener("click", function (event) {
+      const popup = document.getElementById("menu-popup");
+      if (event.target === popup) {
+        closeMenuPopup();
+      }
+    });
+  });

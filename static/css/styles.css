@@ -78,17 +78,6 @@ body{
     width: 300vw;
 }
 
-
-#box2{
-    background-image: url(../img/strong_vignette_image_2.jpg);
-    min-width: 100vw; /* En bild tar hela skärmen */
-    height: 100vh;
-    background-size: contain;
-    background-position: center;
-    /*position: relative; /* Viktigt för att knapparna ska placeras rätt */
-    flex: 0 0 100vw 
-}
-
 #box3 {
     display: flex;
     width: 100vw;
@@ -198,7 +187,28 @@ body{
     background-image: url('../img/caviar_mild_vignette.jpg'); /* byt till din högerbild */
   }
 
+  .menu-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 0.85rem;
+    text-align: center;
+    z-index: 5;
+    max-width: 80%;
+    line-height: 1.6;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+  }
 
+  .menu-overlay a {
+    color: #ccc;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .menu-overlay a:hover {
+    color: white;
+  }
 
 /* Navigationsknappar */
 /*.prev-btn, .next-btn {
@@ -532,9 +542,69 @@ nav{
     text-align: center;
 }
 
-.popup-content h2 {
-    color: black;
-}
+.popup-content .close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .menu-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #6b4f3b;
+    text-align: center;
+  }
+  
+  .menu-columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+  }
+  
+  .menu-category {
+    flex: 1;
+    min-width: 200px;
+  }
+  
+  .menu-category h3 {
+    font-size: 1.2rem;
+    color: #8b6d5c;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 0.5rem;
+  }
+  
+  .menu-category ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .menu-category li {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+    padding: 0.5rem 0;
+  }
+  
+  .dish-name {
+    flex: 1;
+    text-align: left;
+  }
+  
+  .dots::after {
+    content: " ................................ ";
+    color: #bbb;
+  }
+  
+  .price {
+    text-align: right;
+    white-space: nowrap;
+  }
 
 /* Stängningsknapp */
 .close {
