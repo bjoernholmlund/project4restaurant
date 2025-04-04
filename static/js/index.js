@@ -59,7 +59,7 @@ function closePopup() {
 }
 
 function openRegisterPopup(){
-    document.getElementById("register-popup").style.display = "block";
+    document.getElementById("register-popup").style.display = "flex";
 }
 
 function closeRegisterPopup() {
@@ -83,7 +83,7 @@ document.getElementById("reservation-link").addEventListener("click", function(e
 // Event listener for the Register link
 document.getElementById("register-link").addEventListener("click", function(event) {
     event.preventDefault(); // Prevent default anchor behavior (no scrolling or page refresh)
-    openPopup(); // Show the reservation popup
+    openRegisterPopup(); // Show the reservation popup
 });
 
 

@@ -16,6 +16,6 @@ class BookingAdmin(admin.ModelAdmin):
 
 @admin.register(Table)
 class TableAdmin(admin.ModelAdmin):
-    list_display = ('table_number', 'capacity')
+    list_display = ('table_number',)
     inlines = [BookingInline]
 
