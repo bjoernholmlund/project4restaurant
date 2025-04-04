@@ -531,7 +531,7 @@ nav{
 }
 
 /* Innehåll för popup */
-.popup-content{
+/*.popup-content{
     background: white;
     color: black;
     padding: 20px;
@@ -548,6 +548,40 @@ nav{
     right: 1rem;
     font-size: 1.5rem;
     cursor: pointer;
+  }*/
+  
+
+  .popup-content {
+    position: relative;
+    background-color: #fff8f0;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 700px;
+    font-family: 'Georgia', serif;
+    color: #3a2c1d;
+  }
+  
+  /* Stäng-kryss */
+  .popup-content .close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #6b4f3b;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    line-height: 1;
+    z-index: 10;
+    transition: transform 0.2s ease;
+  }
+  
+  .popup-content .close:hover {
+    transform: scale(1.2);
+    color: #a33;
   }
   
   .menu-title {

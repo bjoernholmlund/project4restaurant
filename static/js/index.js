@@ -283,3 +283,24 @@ function openMenuPopup() {
       }
     });
   });
+
+  //------------DRINK OVH VINLISTA-------------//
+
+const drinkPopup = document.getElementById("drink-popup");
+const showDrinkBtn = document.getElementById("show-drink-list");
+
+showDrinkBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  drinkPopup.style.display = "flex";
+});
+
+function closeDrinkPopup() {
+  drinkPopup.style.display = "none";
+}
+
+// Klicka utanför för att stänga
+window.addEventListener("click", function (event) {
+  if (event.target === drinkPopup) {
+    drinkPopup.style.display = "none";
+  }
+});
