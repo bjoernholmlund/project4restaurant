@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
+import dj_database_url
 
 from pathlib import Path
 import os
@@ -82,7 +83,6 @@ WSGI_APPLICATION = "restaurant_booking.wsgi.application"
 DEVELOPMENT = os.environ.get("DEVELOPMENT") == "True"
 
 if DEVELOPMENT:
-    # 👨‍💻 Lokalt – använd SQLite
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -90,21 +90,11 @@ if DEVELOPMENT:
         }
     }
 else:
-    # 🚀 Produktion – Neon (på Heroku)
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'most_stole_grass_32428',
-            'USER': 'neondb_owner',
-            'PASSWORD': 'npg_qhiCm3l2OkVx',
-            'HOST': 'ep-small-mud-a2o1p2wk.eu-central-1.aws.neon.tech',
-            'PORT': '5432',
-            'OPTIONS': {
-                'sslmode': 'require',
-                # 'options': '-c endpoint=ep-small-mud-a2o1p2wk',  # bara om Neon kräver det
-            },
-        }
+        'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
     }
+
+
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
