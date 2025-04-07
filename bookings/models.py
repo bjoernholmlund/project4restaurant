@@ -7,7 +7,7 @@ class Table(models.Model):
     table_number = models.IntegerField(unique=True)
 
     def __str__(self):
-        return f"Table {self.table_number} (Capacity: {self.capacity})"
+        return f"Table {self.table_number})"
 
 class Booking(models.Model):
     table = models.ForeignKey(Table, on_delete=models.CASCADE)
