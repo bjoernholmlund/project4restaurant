@@ -1,0 +1,16 @@
+<h2>Mina bokningar</h2>
+
+{% if bookings %}
+  <ul>
+    {% for booking in bookings %}
+      <li>
+        Bord: {{ booking.table }} – {{ booking.date }} kl {{ booking.time }}
+        <a href="{% url 'cancel_booking' booking.id %}" onclick="return confirm('Vill du avboka denna bokning?')">
+          Avboka
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>Du har inga aktiva bokningar.</p>
+{% endif %}

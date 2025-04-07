@@ -10,6 +10,7 @@ class Table(models.Model):
         return f"Table {self.table_number})"
 
 class Booking(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     table = models.ForeignKey(Table, on_delete=models.CASCADE)
     guest_name = models.CharField(max_length=100)
     guest_email = models.EmailField()

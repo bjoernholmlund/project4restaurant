@@ -6,6 +6,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from .forms import CustomUserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
+from django.shortcuts import render, get_object_or_404, redirect
+from bookings.models import Booking
 
 def register(request):
     if request.method == 'POST':
@@ -57,3 +59,15 @@ def logout_view(request):
 @login_required
 def profile(request):
     return render(request, 'accounts/profile.html')
+
+@login_required
+def profile(request):
+    bookings = Booking.objects.filter(user=request.user).order_by('date_time', 'created_at')
+    return render(request, 'accounts/profile.html', {'bookings': bookings})
+
+@login_required
+def cancel_booking(request, booking_id):
+    booking = get_object_or_404(Booking, id=booking_id, user=request.user)
+    booking.delete()
+    messages.success(request, "Din bokning har avbokats.")
+    return redirect('profile')

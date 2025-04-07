@@ -49,7 +49,7 @@ hamMenu.addEventListener('click', () => {
 })
 
 /*-------*/
-/*modal - reservation/register button and form*/
+/*modal - reservation/register/login button and form*/
 function openPopup() {
     document.getElementById("popup").style.display = "flex";
 }
@@ -65,7 +65,6 @@ function openRegisterPopup(){
 function closeRegisterPopup() {
     document.getElementById("register-popup").style.display = "none";
 }
-
 
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("popup").style.display = "none"; // Tvinga att det är dolt vid start
@@ -126,6 +125,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
+//Förhindra att man hamnar fel vid laddning
+document.addEventListener("DOMContentLoaded", function () {
+    if (window.innerWidth <= 768 && window.location.hash === "#carousel-section") {
+      window.scrollTo(0, 0); // Scrolla till toppen om hash är inställd
+    }
+  });
 
 
 //---- Bokningsformuläret ----------//
@@ -161,6 +166,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 messageBox.classList.remove("hidden", "text-red-600");
                 messageBox.classList.add("text-green-600");
                 form.reset();
+
+                    // 🔁 Ladda om sidan efter 3 sekunder
+                setTimeout(() => {
+                    location.reload();
+    }           , 3000);
             } else {
                 let errorText = data.message || "❌ Something went wrong.";
                 messageBox.innerHTML = `<p>${errorText}</p>`;
@@ -199,6 +209,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
 
 //------- Registreringsformuläret och länk ner till carousel--------//
 
@@ -303,4 +314,88 @@ window.addEventListener("click", function (event) {
   if (event.target === drinkPopup) {
     drinkPopup.style.display = "none";
   }
+});
+
+//popup för profil/inlogg//
+
+//document.addEventListener("DOMContentLoaded", function () {
+//    const profileLink = document.getElementById("profile-link");
+//    const profilePopup = document.getElementById("profilePopup");
+
+//    if (profileLink && profilePopup) {
+//      profileLink.addEventListener("click", function (e) {
+//        e.preventDefault();
+//        profilePopup.classList.remove("hidden");
+//      });
+//    }
+//  });
+
+function closeProfilePopup() {
+    document.getElementById("profilePopup").classList.add("hidden");
+     // ⬅️ Ladda om sidan för att hämta nya bokningar
+  }
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const profileLink = document.getElementById("profile-link"); // <- ID på din "Min sida"-länk
+    const profilePopup = document.getElementById("profilePopup");
+    const closeBtn = document.querySelector('#profilePopup .close');
+  
+    if (profileLink && profilePopup) {
+      profileLink.addEventListener("click", function (e) {
+        e.preventDefault();
+        profilePopup.classList.remove("hidden");
+      });
+    }
+  
+    if (closeBtn) {
+      closeBtn.addEventListener("click", function () {
+        profilePopup.classList.add("hidden");
+      });
+    }
+  
+    profilePopup?.addEventListener("click", function (e) {
+      if (e.target === profilePopup) {
+        profilePopup.classList.add("hidden");
+      }
+    });
+    
+    const loginForm = document.getElementById("loginForm");
+    const loginMessage = document.getElementById("loginMessage");
+  
+    if (loginForm) {
+      loginForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+  
+        const formData = new FormData(loginForm);
+  
+        fetch(loginForm.action, {
+          method: "POST",
+          headers: {
+            "X-Requested-With": "XMLHttpRequest",
+            "X-CSRFToken": formData.get("csrfmiddlewaretoken"),
+          },
+          body: formData,
+        })
+          .then((response) => {
+            if (response.redirected) {
+              // Inloggning lyckades, ladda om sidan (eller popupen via fetch)
+              location.reload();
+            } else {
+              return response.text();
+            }
+          })
+          .then((html) => {
+            if (html) {
+              loginMessage.classList.remove("hidden");
+              loginMessage.innerHTML = "❌ Fel användarnamn eller lösenord";
+            }
+          })
+          .catch((error) => {
+            console.error("Login error:", error);
+            loginMessage.classList.remove("hidden");
+            loginMessage.textContent = "❌ Något gick fel, försök igen.";
+          });
+      });
+    }
 });

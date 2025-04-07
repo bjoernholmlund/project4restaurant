@@ -6,6 +6,10 @@ from django.utils.dateparse import parse_datetime
 from datetime import timedelta
 from django.contrib import messages
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404
+from django.contrib.auth.forms import AuthenticationForm
+
 
 def book_table(request):
     tables = Table.objects.all()
@@ -60,7 +64,8 @@ def book_table(request):
                 guest_email=email,
                 table=table,
                 date_time=date_time_obj,
-                number_of_guests=number_of_guests
+                number_of_guests=number_of_guests,
+                user=request.user if request.user.is_authenticated else None
             )
 
             if is_ajax:
@@ -84,6 +89,27 @@ def book_table(request):
                 return render(request, 'book_table.html', {'tables': tables})
 
     return render(request, 'book_table.html', {'tables': tables})
+
+@login_required
+def my_bookings(request):
+    bookings = Booking.objects.filter(user=request.user)
+    return render(request, 'bookings/my_bookings.html', {'bookings': bookings})
+
+@login_required
+def cancel_booking(request, booking_id):
+    booking = get_object_or_404(Booking, id=booking_id, user=request.user)
+    booking.delete()
+    messages.success(request, "Din bokning har avbokats.")
+    
+    return redirect('home')
+
 def home(request):
     tables = Table.objects.all()  # om du skickar bord till startsidan
-    return render(request, 'index.html', {'tables': tables})
+    form = AuthenticationForm()
+
+    return render(request, 'index.html', 
+            {'tables': tables,  
+             "form": form,
+        })
+
+
