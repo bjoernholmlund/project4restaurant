@@ -60,7 +60,7 @@ body{
     background-repeat: no-repeat; /* Prevents tiling */
     min-width: 100vw; /* Makes the image take up the entire width of the screen */
     height: 100vh; /* Makes the first box take up the entire screen */
-    
+    z-index: 1;
 }
 
 .carousel-wrapper{
@@ -189,6 +189,11 @@ body{
     background-image: url('../img/caviar_mild_vignette.jpg'); /* byt till din högerbild */
   }
 
+   .overlay{
+    z-index: 1;
+    position: relative;
+   }
+
   .menu-overlay {
     position: absolute;
     top: 50%;
@@ -197,11 +202,16 @@ body{
     color: white;
     font-size: 0.85rem;
     text-align: center;
-    z-index: 5;
+    z-index: 2;
     max-width: 80%;
     line-height: 1.6;
     text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
   }
+
+#menu-popup{
+  z-index: 250;
+  position: fixed;
+}
 
   .menu-overlay a {
     color: #ccc;
@@ -340,6 +350,7 @@ header{
     justify-content: center;
     align-items: center;
     margin: 0 auto;
+    z-index: 2;
 }
 
 nav{
@@ -591,6 +602,7 @@ nav{
   .menu-category {
     flex: 1;
     min-width: 200px;
+    z-index: 500;
   }
   
   .menu-category h3 {
