@@ -9,6 +9,8 @@ from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.forms import AuthenticationForm
+from django.core.mail import send_mail
+from django.views.decorators.csrf import csrf_exempt
 
 
 def book_table(request):
@@ -111,5 +113,21 @@ def home(request):
             {'tables': tables,  
              "form": form,
         })
+#contact form
+@csrf_exempt
+def send_message(request):
+    if request.method == 'POST':
+        name = request.POST.get('name', '')
+        email = request.POST.get('email', '')
+        message = request.POST.get('message', '')
 
+        # Här kan du skicka mejl eller spara i databas
+        send_mail(
+            subject=f"Kontakt från {name}",
+            message=message,
+            from_email=email,
+            recipient_list=['din@mailadress.se'],  # <-- Ändra till din e-post
+        )
 
+        return JsonResponse({'success': True})
+    return JsonResponse({'success': False}, status=400)

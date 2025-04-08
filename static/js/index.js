@@ -10,7 +10,7 @@ const slides = document.querySelectorAll('.box');
 const prevBtn = document.querySelector('.prev-btn');
 const nextBtn = document.querySelector('.next-btn');
 
-let currentIndex = - 1; // Starta på första bilden
+let currentIndex = - 1 // Starta på första bilden
 const totalSlides = slides.length;
 
 function updateCarousel() {
@@ -28,7 +28,7 @@ prevBtn.addEventListener('click', () => {
     if (currentIndex > - 1) {
         currentIndex--;
     } else {
-        currentIndex = totalSlides - 3; // Hoppa till sista bilden om du är på första
+        currentIndex = totalSlides - 5; // Hoppa till sista bilden om du är på första
     }
     updateCarousel();
 });
@@ -46,7 +46,23 @@ nextBtn.addEventListener('click', () => {
 hamMenu.addEventListener('click', () => {
     hamMenu.classList.toggle('active');
     offScreenMenu.classList.toggle('active');
+    document.body.classList.toggle('menu-open');
 })
+// så man hamnar högst upp på sidan vid start, förhindrar vid mobiler.
+window.onload = function () {
+  if (window.innerWidth < 768) {
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 360);
+  }
+};
+
+
+//document.addEventListener("DOMContentLoaded", function () {
+//  if (window.location.hash === "") {
+//    window.scrollTo(0, 0);
+//  }
+//});
 
 /*-------*/
 /*modal - reservation/register/login button and form*/
@@ -272,48 +288,52 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //--------------------MENU-----------------//
 function openMenuPopup() {
-    document.getElementById("menu-popup").style.display = "flex";
-  }
-  
-  function closeMenuPopup() {
-    document.getElementById("menu-popup").style.display = "none";
-  }
-  
-  document.addEventListener("DOMContentLoaded", function () {
-    const link = document.getElementById("show-full-menu");
-    link.addEventListener("click", function (e) {
-      e.preventDefault();
-      openMenuPopup();
-    });
-  
-    // Stänger popup om du klickar utanför innehållet
-    window.addEventListener("click", function (event) {
-      const popup = document.getElementById("menu-popup");
-      if (event.target === popup) {
-        closeMenuPopup();
-      }
-    });
+  document.getElementById("menu-popup").style.display = "flex";
+  document.body.classList.add("no-scroll");
+}
+
+function closeMenuPopup() {
+  document.getElementById("menu-popup").style.display = "none";
+  document.body.classList.remove("no-scroll");
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const link = document.getElementById("show-full-menu");
+  link.addEventListener("click", function (e) {
+    e.preventDefault();
+    openMenuPopup();                                                                        
   });
 
-  //------------DRINK OVH VINLISTA-------------//
+  // Stänger popup om du klickar utanför innehållet
+  window.addEventListener("click", function (event) {
+    const popup = document.getElementById("menu-popup");
+    if (event.target === popup) {
+      closeMenuPopup();
+    }
+  });
+});
+
+//------------DRINK OVH VINLISTA-------------//
 
 const drinkPopup = document.getElementById("drink-popup");
 const showDrinkBtn = document.getElementById("show-drink-list");
 
 showDrinkBtn.addEventListener("click", function (e) {
-  e.preventDefault();
-  drinkPopup.style.display = "flex";
+e.preventDefault();
+drinkPopup.style.display = "flex";
+document.body.classList.add("no-scroll"); // Lägg till klass
 });
 
 function closeDrinkPopup() {
-  drinkPopup.style.display = "none";
+drinkPopup.style.display = "none";
+document.body.classList.remove("no-scroll"); // Ta bort klass
 }
 
 // Klicka utanför för att stänga
 window.addEventListener("click", function (event) {
-  if (event.target === drinkPopup) {
-    drinkPopup.style.display = "none";
-  }
+if (event.target === drinkPopup) {
+  closeDrinkPopup();
+}
 });
 
 //popup för profil/inlogg//
@@ -398,4 +418,26 @@ document.addEventListener("DOMContentLoaded", function () {
           });
       });
     }
+});
+
+//CONTACTFORM//
+function openContactPopup() {
+  document.getElementById("contact-popup").style.display = "flex";
+}
+
+function closeContactPopup() {
+  document.getElementById("contact-popup").style.display = "none";
+}
+
+// Event listener från menyn
+document.addEventListener("DOMContentLoaded", function () {
+  const contactLink = document.querySelector("a[href='#contact']");
+  if (contactLink) {
+    contactLink.addEventListener("click", function (e) {
+      e.preventDefault();
+      openContactPopup();
+      document.querySelector('.off-screen-menu')?.classList.remove('active');
+      document.querySelector('.ham-menu')?.classList.remove('active');
+    });
+  }
 });

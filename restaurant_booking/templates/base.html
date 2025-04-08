@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Restaurant{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
@@ -11,7 +12,7 @@
 
 </head>
 
-<body>
+<body id="top">
     
     <!--Hamburger menu appearance-->
     <div class="off-screen-menu">
@@ -135,16 +136,18 @@
         </div>
     </div>
 
-    <div class="container" id="top">
-        <div class="box" id="box1">
-            <div class="center-text">
-                <div class="big-text"><h1 id="delayed-text" class="hidden">Welcome to Bite</h1></div>
+          <div class="container" id="top">
+            <div class="box" id="box1">
+                <div class="center-text">
+                    <div class="big-text"><h1 id="delayed-text" class="hidden">Welcome to Bite</h1></div>
+                </div>
+    
             </div>
-
-        </div>
 
         <!-- Karusellen med knappar -->
         <div id="carousel-section" class="carousel-wrapper">
+          
+
             <div id="menu-description" class="menu-overlay">
                 <p>
                     Our menu is available for both lunch and dinner, <br> with a variety of seasonal dishes to choose from. <br>
@@ -323,6 +326,28 @@
 
         <div id="loginMessage" class="text-sm mt-3 text-red-600 hidden"></div>
       {% endif %}
+      </div>
+    </div>
+
+    <!--Contactform-->
+    <div class="popup" id="contact-popup" style="display: none;">
+      <div class="popup-content">
+        <span class="close" onclick="closeContactPopup()">&times;</span>
+        <h2>Contact Us</h2>
+        <form id="contactForm" method="post" action="{% url 'send_message' %}">
+          {% csrf_token %}
+          <div class="input-box">
+            <input type="text" name="name" placeholder="Your Name" required>
+          </div>
+          <div class="input-box">
+            <input type="email" name="email" placeholder="Your Email" required>
+          </div>
+          <div class="input-box">
+            <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
+          </div>
+          <button type="submit" class="submit-btn">Send</button>
+        </form>
+        <div id="contactMessage" class="hidden mt-4 font-semibold text-center"></div>
       </div>
     </div>
 
