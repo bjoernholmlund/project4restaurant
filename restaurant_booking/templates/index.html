@@ -1,370 +1,131 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Restaurant{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>Restaurant</title>
+    <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-
 </head>
-
 <body id="top">
-    
-    <!--Hamburger menu appearance-->
     <div class="off-screen-menu">
         <ul>
-            <li><a href="#top" id="home-link">Welcome</a></li>
-            <li><a href="#carousel-section" id="menu-link">Menu</a></li>
-            <li><a href="#reservation" id="reservation-link">Reservation</a></li>
-            <li><a href="#register" id="register-link">Register</a></li>
-            <li><a href="#contact" id="contact-link">Contact</a></li>
-            <li><a href="#profile" id="profile-link">Min sida</a></li>
-        
+            <li><a href="#top">Welcome</a></li>
+            <li><a href="#carousel-section">Menu</a></li>
+            <li><a href="#popup">Reservation</a></li>
+            <li><a href="#register-popup">Register</a></li>
+            <li><a href="#contact-popup">Contact</a></li>
+            <li><a href="#profilePopup">Min sida</a></li>
         </ul>
     </div>
-            
-    <!-- Header -->
-    <header>                
+    <header>
         <nav>
             <div class="ham-menu">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
-
-        <div class="overlay"></div>
-        <a href="{% url 'home' %}">
-           <div class="logo-bite" ></div>
-        </a>
-        <div class="container-nav">  
-            <!-- Knapp för att öppna popup -->
-            <button type="button" class="btn" onclick="openPopup()">RESERVATION</button>
-
-            <!-- Popup -->
-            <div class="popup" id="popup" style="display: none;">
-                <div class="popup-content">
-                    <span class="close" onclick="closePopup()">&times;</span>
-                        <h2>Book a table</h2>
-                        <form id="reservationForm" method="post" action="{% url 'book_table' %}" data-url="{% url 'book_table' %}"> 
-                               {% csrf_token %}
-            
-                               <div class="input-box">  
-                                    <span class="details">Full Name</span>
-                                    <input type="text" name="guest_name" placeholder="Enter your name" required>
-                                </div>
-            
-                                <div class="input-box">
-                                    <span class="details">Email</span>
-                                    <input type="email" name="guest_email" placeholder="Enter your email" required>
-                                </div>
-            
-                                <div class="input-box">
-                                    <span class="details">Phone</span>
-                                    <input type="tel" placeholder="Enter your phone number" required>
-                                </div>
-            
-                                <div class="input-box">
-                                    <span class="details"></span>
-                                    <select name="table" required>
-                                    <option value="">Select Table</option>
-                                        {% for table in tables %}
-                                    <option value="{{ table.id }}">Table {{ table.table_number }}</option>
-                                        {% endfor %}
-                                    </select>
-                                </div>
-            
-                                <div class="input-box">
-                                    <span class="details">Date</span>
-                                    <input type="datetime-local" name="date_time"required>
-                                </div>
-
-                                <div class="input-box">
-                                    <span class="details">Number of Guests</span>
-                                    <input type="number" name="number_of_guests" min="1" max="20" required>
-                                </div>
-            
-                                <button type="submit" class="submit-btn">Reservate</button>
-                            </form>
-                            <div id="reservationMessage" class="hidden mt-4 font-semibold"></div>
-                             <div id="suggestedTimes" class="hidden mt-2"></div>
-                    </div>
-                </div>
+            <div class="overlay"></div>
+            <a href="#top">
+                <div class="logo-bite"></div>
+            </a>
+            <div class="container-nav">
+                <button type="button" class="btn" onclick="openPopup()">RESERVATION</button>
             </div>
         </nav>
     </header>
 
-
-    
+    <div class="popup" id="popup">
+        <div class="popup-content">
+            <span class="close" onclick="closePopup()">&times;</span>
+            <h2>Book a table</h2>
+            <form id="reservationForm">
+                <div class="input-box">
+                    <input type="text" name="guest_name" placeholder="Enter your name" required>
+                </div>
+                <div class="input-box">
+                    <input type="email" name="guest_email" placeholder="Enter your email" required>
+                </div>
+                <div class="input-box">
+                    <input type="tel" placeholder="Enter your phone number" required>
+                </div>
+                <div class="input-box">
+                    <select name="table" required>
+                        <option value="">Select Table</option>
+                        <option value="1">Table 1</option>
+                        <option value="2">Table 2</option>
+                    </select>
+                </div>
+                <div class="input-box">
+                    <input type="datetime-local" name="date_time" required>
+                </div>
+                <div class="input-box">
+                    <input type="number" name="number_of_guests" min="1" max="20" required>
+                </div>
+                <button type="submit" class="submit-btn">Reservate</button>
+            </form>
+            <div id="reservationMessage" class="hidden mt-4 font-semibold"></div>
+        </div>
+    </div>
 
     <div class="popup" id="register-popup">
         <div class="popup-content">
             <span class="close" onclick="closeRegisterPopup()">&times;</span>
             <h2>Register</h2>
-            <form id="registerform" method="post" action="{% url 'register' %}">
-                {% csrf_token %}
-                <div class="input-box">
-                    <span class="details">Full Name</span>
-                    <input type="text" name="first_name" placeholder="Enter your name" required>
-                </div>
-                <div class="input-box">
-                    <span class="details">Last Name</span>
-                    <input type="text" name="last_name" placeholder="Enter your last name" required>
-                </div>
-                <div class="input-box">
-                    <span class="details">Email</span>
-                    <input type="email" name="email" placeholder="Enter your email" required>
-                </div>
-                <div class="input-box">
-                    <span class="details">Username</span>
-                    <input type="text" name="username" placeholder="Enter a username" required>
-                </div>
-                <div class="input-box">
-                    <span class="details">Password</span>
-                    <input type="password" name="password1" placeholder="Enter password" required>
-                </div>
-                <div class="input-box">
-                    <span class="details">Confirm Password</span>
-                    <input type="password" name="password2" placeholder="Confirm password" required>
-                </div>
+            <form id="registerform">
+                <div class="input-box"><input type="text" name="first_name" placeholder="Enter your name" required></div>
+                <div class="input-box"><input type="text" name="last_name" placeholder="Enter your last name" required></div>
+                <div class="input-box"><input type="email" name="email" placeholder="Enter your email" required></div>
+                <div class="input-box"><input type="text" name="username" placeholder="Enter a username" required></div>
+                <div class="input-box"><input type="password" name="password1" placeholder="Enter password" required></div>
+                <div class="input-box"><input type="password" name="password2" placeholder="Confirm password" required></div>
                 <button type="submit" class="submit-btn">Create Account</button>
             </form>
             <div id="registerMessage" class="hidden mt-4 font-semibold text-center"></div>
         </div>
     </div>
 
-          <div class="container" id="top">
-            <div class="box" id="box1">
-                <div class="center-text">
-                    <div class="big-text"><h1 id="delayed-text" class="hidden">Welcome to Bite</h1></div>
-                </div>
-    
+    <div class="container" id="top">
+        <div class="box" id="box1">
+            <div class="center-text">
+                <div class="big-text"><h1 id="delayed-text" class="hidden">Welcome to Bite</h1></div>
             </div>
+        </div>
 
-        <!-- Karusellen med knappar -->
         <div id="carousel-section" class="carousel-wrapper">
-          
-
             <div id="menu-description" class="menu-overlay">
-                <p>
-                    Our menu is available for both lunch and dinner, <br> with a variety of seasonal dishes to choose from. <br>
-                    Pair your meal with something from our <br> selection of carefully matched drinks.
-                </p>
+                <p>Our menu is available for both lunch and dinner.<br>Pair your meal with something from our drink list.</p>
                 <a href="#" id="show-full-menu" class="underline text-sm mt-2 inline-block">See full menu</a>
                 <a href="#" id="show-drink-list" class="underline text-sm mt-2 inline-block">See wine & drink list</a>
             </div>
-                <div id="menu-popup" class="popup menu-popup-style" style="display: none;">
-                    <div class="popup-content">
-                      <span class="close" onclick="closeMenuPopup()">&times;</span>
-                      <h2 class="menu-title">Our Menu</h2>
-                      <div class="menu-columns">
-                        <div class="menu-category">
-                          <h3>Förrätter</h3>
-                          <ul>
-                            <li><span class="dish-name">Carpaccio</span><span class="dots"></span><span class="price">145 kr</span></li>
-                            <li><span class="dish-name">Skagen mixture</span><span class="dots"></span><span class="price">135 kr</span></li>
-                          </ul>
-                        </div>
-                        <div class="menu-category">
-                          <h3>Varmrätter</h3>
-                          <ul>
-                            <li><span class="dish-name">Beef fillet with truffle sauce</span><span class="dots"></span><span class="price">285 kr</span></li>
-                            <li><span class="dish-name">Grilled salmon</span><span class="dots"></span><span class="price">265 kr</span></li>
-                          </ul>
-                        </div>
-                        <div class="menu-category">
-                          <h3>Desserter</h3>
-                          <ul>
-                            <li><span class="dish-name">Crème brûlée</span><span class="dots"></span><span class="price">95 kr</span></li>
-                            <li><span class="dish-name">Chocolate fondant</span><span class="dots"></span><span class="price">105 kr</span></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <!--Drink och vinlista-->
-                  <div id="drink-popup" class="popup drink-popup-style" style="display: none;">
-                    <div class="popup-content">
-                      <span class="close" onclick="closeDrinkPopup()">&times;</span>
-                      <h2 class="menu-title">Wine & Drink list</h2>
-                      <div class="menu-columns">
-                  
-                        <!-- Vita Viner -->
-                        <div class="menu-category">
-                          <h3>Vita viner</h3>
-                          <ul>
-                            <li><span class="dish-name">Chablis, Domaine Laroche</span><span class="dots"></span><span class="price">145 kr / glass</span></li>
-                            <li><span class="dish-name">Sancerre, Henri Bourgeois</span><span class="dots"></span><span class="price">695 kr / bottle</span></li>
-                          </ul>
-                        </div>
-                  
-                        <!-- Röda Viner -->
-                        <div class="menu-category">
-                          <h3>Röda viner</h3>
-                          <ul>
-                            <li><span class="dish-name">Barolo, Pio Cesare</span><span class="dots"></span><span class="price">795 kr / bottle</span></li>
-                            <li><span class="dish-name">Pinot Noir, NZ</span><span class="dots"></span><span class="price">135 kr / glass</span></li>
-                          </ul>
-                        </div>
-                  
-                        <!-- Champagne -->
-                        <div class="menu-category">
-                          <h3>Champagne</h3>
-                          <ul>
-                            <li><span class="dish-name">Bollinger Special Cuvée</span><span class="dots"></span><span class="price">975 kr</span></li>
-                            <li><span class="dish-name">Moët & Chandon Brut</span><span class="dots"></span><span class="price">845 kr</span></li>
-                          </ul>
-                        </div>
-                  
-                        <!-- Cocktails -->
-                        <div class="menu-category">
-                          <h3>Cocktails</h3>
-                          <ul>
-                            <li><span class="dish-name">Whiskey Sour</span><span class="dots"></span><span class="price">125 kr</span></li>
-                            <li><span class="dish-name">Espresso Martini</span><span class="dots"></span><span class="price">135 kr</span></li>
-                          </ul>
-                        </div>
-                  
-                        <!-- Alkoholfria -->
-                        <div class="menu-category">
-                          <h3>Alkoholfritt</h3>
-                          <ul>
-                            <li><span class="dish-name">Virgin Mojito</span><span class="dots"></span><span class="price">85 kr</span></li>
-                            <li><span class="dish-name">Rabarberlemonad</span><span class="dots"></span><span class="price">75 kr</span></li>
-                          </ul>
-                        </div>
-                  
-                      </div>
-                    </div>
-                  </div>
-            <button class="arrow left prev-btn" id="prevSlide">
-                <svg width="60px" height="80px" viewBox="0 0 50 80">
-                  <polyline fill="none" stroke="#FFFFFF" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
-                    points="45.63,75.8 0.375,38.087 45.63,0.375" />
-                </svg>
-              </button> 
+
             <div class="carousel-container">
-                <div class="box" id="box7">
-                    <div class="half left-img"></div>
-                    <div class="half right-img"></div>
-                </div>
-                <div class="box" id="box3">
-                    <div class="half left-img"></div>
-                    <div class="half right-img"></div>
-                </div>
+                <div class="box" id="box7"><div class="half left-img"></div><div class="half right-img"></div></div>
+                <div class="box" id="box3"><div class="half left-img"></div><div class="half right-img"></div></div>
                 <div class="box" id="box4"></div>
-                <div class="box" id="box5">
-                    <div class="half left-img"></div>
-                    <div class="half right-img"></div>
-                </div>
-                <div class="box" id="box6"></div>
             </div>
-            <button class="arrow right next-btn" id="nextSlide">
-                <svg width="60px" height="80px" viewBox="0 0 50 80">
-                  <polyline fill="none" stroke="#FFFFFF" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
-                    points="0.375,0.375 45.63,38.087 0.375,75.8" />
-                </svg>
-              </button>
         </div>
     </div>
-    
 
-    <div id="profilePopup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-      <div class="bg-white rounded-lg w-full max-w-md p-6 relative">
-        <button onclick="closeProfilePopup()" class="absolute top-2 right-2 text-gray-500 hover:text-black text-2xl">
-          &times;
-        </button>
-    
-        {% if user.is_authenticated %}
-        <h2 class="text-2xl font-semibold mb-4 text-black">Hej {{ user.username }}!</h2>
-        <h3 class="text-lg font-semibold mb-2 text-black">Dina bokningar:</h3>
-  
-        {% if bookings %}
-          <ul class="space-y-2 text-black">
-            {% for booking in bookings %}
-              <li class="border-b pb-2">
-                Bord: {{ booking.table }}<br>
-                Tid: {{ booking.date_time|date:"Y-m-d H:i" }}<br>
-                <a href="{% url 'cancel_booking' booking.id %}" class="text-red-600 underline" onclick="return confirm('Vill du avboka?')">Avboka</a>
-              </li>
-            {% endfor %}
-          </ul>
-        {% else %}
-          <p class="text-gray-600">Du har inga bokningar än.</p>
-        {% endif %}
-  
-        <form method="POST" action="{% url 'logout' %}" class="mt-4">
-          {% csrf_token %}
-          <button type="submit" class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-900">
-            Logga ut
-          </button>
-        </form>
-  
-        {% else %}
-        
-
-        <form method="POST" action="{% url 'login' %}" id="loginForm" class="space-y-4">
-          {% csrf_token %}
-          {% load widget_tweaks %}
-          <div class="mb-4">
-            <label for="{{ form.username.id_for_label }}" class="block text-sm font-medium text-gray-700">Användarnamn</label>
-            {{ form.username|add_class:"w-full px-4 py-2 border border-gray-300 rounded text-black bg-white focus:outline-none focus:ring-2 focus:ring-black" }}
-          </div>
-        
-          <div class="mb-4">
-            <label for="{{ form.password.id_for_label }}" class="block text-sm font-medium text-gray-700">Lösenord</label>
-            {{ form.password|add_class:"w-full px-4 py-2 border border-gray-300 rounded text-black bg-white focus:outline-none focus:ring-2 focus:ring-black" }}
-          </div>
-        
-          <button type="submit" class="w-full bg-black text-white px-4 py-2 rounded hover:bg-neutral-800 transition duration-200">
-            Logga in
-          </button>
-        </form>
-
-        <div id="loginMessage" class="text-sm mt-3 text-red-600 hidden"></div>
-      {% endif %}
-      </div>
+    <div class="popup" id="contact-popup">
+        <div class="popup-content">
+            <span class="close" onclick="closeContactPopup()">&times;</span>
+            <h2>Contact Us</h2>
+            <form id="contactForm">
+                <div class="input-box"><input type="text" name="name" placeholder="Your Name" required></div>
+                <div class="input-box"><input type="email" name="email" placeholder="Your Email" required></div>
+                <div class="input-box"><textarea name="message" rows="4" placeholder="Your Message" required></textarea></div>
+                <button type="submit" class="submit-btn">Send</button>
+            </form>
+            <div id="contactMessage" class="hidden mt-4 font-semibold text-center"></div>
+        </div>
     </div>
 
-    <!--Contactform-->
-    <div class="popup" id="contact-popup" style="display: none;">
-      <div class="popup-content">
-        <span class="close" onclick="closeContactPopup()">&times;</span>
-        <h2>Contact Us</h2>
-        <form id="contactForm" method="post" action="{% url 'send_message' %}">
-          {% csrf_token %}
-          <div class="input-box">
-            <input type="text" name="name" placeholder="Your Name" required>
-          </div>
-          <div class="input-box">
-            <input type="email" name="email" placeholder="Your Email" required>
-          </div>
-          <div class="input-box">
-            <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
-          </div>
-          <button type="submit" class="submit-btn">Send</button>
-        </form>
-        <div id="contactMessage" class="hidden mt-4 font-semibold text-center"></div>
-      </div>
-    </div>
-
-
-
-    <!-- MAIN CONTENT -->
-    <!--<main class="container mx-auto p-6">
-        {% block content %}
-         Page-specific content will go here 
-        {% endblock %}
-    </main>-->
-
-    <!-- FOOTER -->
     <footer>
         <p>&copy; 2025 Restaurant. All rights reserved.</p>
     </footer>
 
-    <script src="{% static 'js/index.js' %}"></script>
+    <script src="js/index.js"></script>
 </body>
 </html>
