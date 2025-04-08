@@ -1,5 +1,5 @@
 from django import forms
-from .models import Booking, Table
+from .models import Booking, Table, ContactMessage
 
 class BookingForm(forms.ModelForm):
     table = forms.ModelChoiceField(
@@ -18,3 +18,8 @@ class BookingForm(forms.ModelForm):
             "date_time": forms.DateTimeInput(attrs={"type": "datetime-local", 'class': 'custom-input'}),
             "number_of_guests": forms.NumberInput(attrs={'class': 'custom-input', 'placeholder': 'Enter number of guests'}),
         }
+
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = ContactMessage
+        fields = ['name', 'email', 'message']        

@@ -74,6 +74,7 @@ function closePopup() {
     document.getElementById("popup").style.display = "none";
 }
 
+//  REGISTRATION POPUP
 function openRegisterPopup(){
     document.getElementById("register-popup").style.display = "flex";
 }
@@ -81,6 +82,8 @@ function openRegisterPopup(){
 function closeRegisterPopup() {
     document.getElementById("register-popup").style.display = "none";
 }
+
+
 
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("popup").style.display = "none"; // Tvinga att det är dolt vid start
@@ -421,6 +424,46 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 //CONTACTFORM//
+contactForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+  const formData = new FormData(contactForm);
+
+  fetch(contactForm.action, {
+    method: "POST",
+    headers: {
+      'X-Requested-With': 'XMLHttpRequest',
+      'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+    },
+    body: formData
+  })
+  .then(res => res.json())
+  .then(data => {
+    contactMessage.classList.remove("hidden", "text-red-600", "text-green-600");
+
+    if (data.success) {
+      contactMessage.textContent = data.message;
+      contactMessage.classList.add("text-green-600");
+      contactForm.reset();
+
+      // ⏳ Vänta 3 sekunder, sen stäng popup
+      setTimeout(() => {
+        document.getElementById("contact-popup").style.display = "none";
+        contactMessage.classList.add("hidden");
+      }, 3000);
+
+    } else {
+      contactMessage.textContent = data.message;
+      contactMessage.classList.add("text-red-600");
+    }
+  })
+  .catch(() => {
+    contactMessage.textContent = "❌ Ett fel inträffade.";
+    contactMessage.classList.remove("hidden");
+    contactMessage.classList.add("text-red-600");
+  });
+});
+
+// CONTACT POPUP
 function openContactPopup() {
   document.getElementById("contact-popup").style.display = "flex";
 }
@@ -429,15 +472,17 @@ function closeContactPopup() {
   document.getElementById("contact-popup").style.display = "none";
 }
 
-// Event listener från menyn
+// Event för hamburgermenyns "Contact"-länk
 document.addEventListener("DOMContentLoaded", function () {
-  const contactLink = document.querySelector("a[href='#contact']");
+  const contactLink = document.getElementById("contact-link");
   if (contactLink) {
     contactLink.addEventListener("click", function (e) {
       e.preventDefault();
       openContactPopup();
-      document.querySelector('.off-screen-menu')?.classList.remove('active');
-      document.querySelector('.ham-menu')?.classList.remove('active');
+
+      // Stäng hamburgermenyn
+      document.querySelector(".off-screen-menu").classList.remove("active");
+      document.querySelector(".ham-menu").classList.remove("active");
     });
   }
 });
