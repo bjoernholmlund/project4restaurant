@@ -783,6 +783,26 @@ nav{
         display: none; /* Döljer knappen på skärmar som är 768px eller mindre */
     }
 
+    .popup {
+      width: 90vw;
+      height: 90vh;
+      overflow-y: auto; /* Scrolla inuti popup */
+      padding: 1rem;
+      top: 5%;
+      left: 5%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  
+    .popup-content {
+      max-height: 100%;
+      overflow-y: auto;
+      padding: 1rem;
+      background-color: white;
+      border-radius: 8px;
+      width: 100%;
+    }
 
   }
 
@@ -808,10 +828,21 @@ nav{
     }
 }
 
+#drink-popup {
+  height: 90vh; /* eller 80vh beroende på hur mycket luft du vill ha */
+  overflow-y: auto;
+}
+
+#drink-popup .popup-content {
+  max-height: 100%;
+  overflow-y: auto;
+}
+
 body.menu-open .logo-bite,
 body.menu-popup-open .logo-bite,
 body.drink-popup-open .logo-bite {
     display: none;
+
 }
 
 /*förhindra scroll vid meny och vinlistan är uppe*/

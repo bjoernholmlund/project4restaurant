@@ -110,7 +110,7 @@ def home(request):
     tables = Table.objects.all()  # om du skickar bord till startsidan
     form = AuthenticationForm()
 
-    return render(request, 'index.html', 
+    return render(request, 'home.html', 
             {'tables': tables,  
              "form": form,
         })

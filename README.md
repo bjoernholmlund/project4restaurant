@@ -1,6 +1,8 @@
 # Bite – Restaurant booking system 🍽️
 
-**Live version**: [https://my-restaurant-booking-project-9719877ce119.herokuapp.com/](https://my-restaurant-booking-project-9719877ce119.herokuapp.com/)  
+**Live version**: <br>
+<a href="https://my-restaurant-booking-project-9719877ce119.herokuapp.com/">Restaurant Page</a>  
+
 
 ## 📖 About the project
 
@@ -20,3 +22,13 @@ The project is built with a focus on UX, responsive design and modern functional
 
 ---
 
+## 🛠️ Technology stack
+
+- **Back-end**: Django, Python, SQLite
+- **Front-end**: HTML, CSS, Tailwind CSS, JavaScript (AJAX)
+- **Database**: SQLite (locally), PostgreSQL (Heroku)
+- **Hosting**: Heroku (app), GitHub Pages (mockup)
+- **Version management**: Git & GitHub
+- **Agile planning**: GitHub Projects with User Stories & Tasks
+
+---
