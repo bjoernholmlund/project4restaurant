@@ -1,7 +1,6 @@
 # Bite – Restaurant booking system 🍽️
 
 **Live version**: [https://my-restaurant-booking-project-9719877ce119.herokuapp.com/](https://my-restaurant-booking-project-9719877ce119.herokuapp.com/)  
-**GitHub Pages static version (mockup):** [https://bjoernholmlund.github.io/project4restaurant/](https://bjoernholmlund.github.io/project4restaurant/)
 
 ## 📖 About the project
 
