@@ -32,3 +32,4 @@ The project is built with a focus on UX, responsive design and modern functional
 - **Agile planning**: GitHub Projects with User Stories & Tasks
 
 ---
+

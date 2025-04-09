@@ -639,7 +639,7 @@ nav{
   }
   
   .dots::after {
-    content: " ................................ ";
+    content: " ......................... ";
     color: #bbb;
   }
   
@@ -784,7 +784,7 @@ nav{
     }
 
     .popup {
-      width: 90vw;
+      width: 95vw;
       height: 90vh;
       overflow-y: auto; /* Scrolla inuti popup */
       padding: 1rem;
@@ -829,8 +829,9 @@ nav{
 }
 
 #drink-popup {
-  height: 90vh; /* eller 80vh beroende på hur mycket luft du vill ha */
+  height: 80vh; /* eller 80vh beroende på hur mycket luft du vill ha */
   overflow-y: auto;
+  top: 5vh;
 }
 
 #drink-popup .popup-content {
