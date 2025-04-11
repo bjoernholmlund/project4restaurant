@@ -108,8 +108,16 @@ document.getElementById("register-link").addEventListener("click", function(even
 // Stänger popup om användaren klickar utanför
 window.onclick = function(event) {
     let popup = document.getElementById("popup");
+    let registerPopup = document.getElementById("register-popup");
+    let contactPopup = document.getElementById("contact-popup");
     if (event.target == popup) {
         closePopup();
+    }
+    if (event.target == registerPopup) {
+        closeRegisterPopup();
+    }
+    if (event.target == contactPopup) {
+        closeContactPopup();
     }
 };
 
