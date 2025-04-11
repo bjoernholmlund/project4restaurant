@@ -348,8 +348,8 @@ header{
 
 .logo-bite{
     background: url(../img/bite_transparent_v2.png) no-repeat center;
-    width: 400px; /* Justera storleken efter behov */
-    height: 200px; /* Justera efter bildens proportioner */
+    width: 250px; /* Justera storleken efter behov */
+    height: 150px; /* Justera efter bildens proportioner */
     background-size: contain; /* Ser till att bilden anpassas till div:en */
     display: block;
     position: absolute;
@@ -488,8 +488,8 @@ nav{
   }
 
 .ham-menu{
-    height: 50px;
-    width: 50px;
+    height: 35px;
+    width: 35px;
     cursor: pointer;
     display: flex;
     flex-direction: column;
