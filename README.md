@@ -41,3 +41,55 @@ The project is built with a focus on UX, responsive design and modern functional
 
 ---
 
+
+## 📂 Functions
+
+### ✅ Guest Users
+
+- Book a table
+
+- See menues
+
+- Send a contactform
+
+### 🔐 Logged in Users
+
+- Register an account
+
+- See own reservations
+
+- Cancel a table 
+
+- Log out
+
+---
+
+
+## 🎨 UX & Design 
+
+
+- Fullscreen carousel
+
+    - A full-screen image carousel that appears immediately after the home page. 
+<br>The user can scroll between sections using arrows. The carousel contains both images and menus.
+
+- Popup-forms
+
+    - All forms (booking, registration, contact, login) open in stylish popups on top of the page.
+
+- Mobilanpassad layout
+
+    -  Responsive design with custom popups and navigation for smaller screens.
+
+- Överlagrade menyer och kontaktformulär
+
+    -  The wine list, menu, and contact form appear over all content and make the rest of the page inaccessible until the popup is closed.
+
+- "Min sida"-vy för användare med inloggning
+
+    - Visar inloggad användares bokningar
+
+    - Möjlighet att avboka direkt i vyn
+
+    - Dynamisk innehållsvisning baserat på inloggningsstatus
+
