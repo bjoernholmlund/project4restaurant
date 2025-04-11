@@ -289,69 +289,55 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-//--------------------MENU-----------------//
+// ------------------ MENY ------------------
 function openMenuPopup() {
   document.getElementById("menu-popup").style.display = "flex";
-  document.body.classList.add("no-scroll");
+  document.body.classList.add("popup-open");
 }
 
 function closeMenuPopup() {
   document.getElementById("menu-popup").style.display = "none";
-  document.body.classList.remove("no-scroll");
+  document.body.classList.remove("popup-open");
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  const link = document.getElementById("show-full-menu");
-  link.addEventListener("click", function (e) {
-    e.preventDefault();
-    openMenuPopup();                                                                        
-  });
-
-  // Stänger popup om du klickar utanför innehållet
-  window.addEventListener("click", function (event) {
-    const popup = document.getElementById("menu-popup");
-    if (event.target === popup) {
-      closeMenuPopup();
-    }
-  });
+document.getElementById("show-full-menu").addEventListener("click", function (e) {
+  e.preventDefault();
+  openMenuPopup();
 });
 
-//------------DRINK OVH VINLISTA-------------//
+// Klick utanför popupen stänger den
+window.addEventListener("click", function (event) {
+  const menuPopup = document.getElementById("menu-popup");
+  if (event.target === menuPopup) {
+    closeMenuPopup();
+  }
+});
 
+
+// ------------------ DRINK / VINLISTA ------------------
 const drinkPopup = document.getElementById("drink-popup");
+const drinkOverlay = document.getElementById("drink-overlay");
 const showDrinkBtn = document.getElementById("show-drink-list");
 
 showDrinkBtn.addEventListener("click", function (e) {
-e.preventDefault();
-drinkPopup.style.display = "flex";
-document.body.classList.add("no-scroll"); // Lägg till klass
+  e.preventDefault();
+  drinkOverlay.style.display = "block";
+  drinkPopup.style.display = "flex";
+ 
 });
 
 function closeDrinkPopup() {
-drinkPopup.style.display = "none";
-document.body.classList.remove("no-scroll"); // Ta bort klass
+  drinkOverlay.style.display = "none";
+  drinkPopup.style.display = "none";
+
 }
 
-// Klicka utanför för att stänga
-window.addEventListener("click", function (event) {
-if (event.target === drinkPopup) {
+drinkOverlay.addEventListener("click", function () {
   closeDrinkPopup();
-}
 });
 
-//popup för profil/inlogg//
+//--------------PROFILE--------------
 
-//document.addEventListener("DOMContentLoaded", function () {
-//    const profileLink = document.getElementById("profile-link");
-//    const profilePopup = document.getElementById("profilePopup");
-
-//    if (profileLink && profilePopup) {
-//      profileLink.addEventListener("click", function (e) {
-//        e.preventDefault();
-//        profilePopup.classList.remove("hidden");
-//      });
-//    }
-//  });
 
 function closeProfilePopup() {
     document.getElementById("profilePopup").classList.add("hidden");
@@ -367,19 +353,19 @@ document.addEventListener("DOMContentLoaded", function () {
     if (profileLink && profilePopup) {
       profileLink.addEventListener("click", function (e) {
         e.preventDefault();
-        profilePopup.classList.remove("hidden");
+        profilePopup.style.display = "flex";
       });
     }
   
     if (closeBtn) {
       closeBtn.addEventListener("click", function () {
-        profilePopup.classList.add("hidden");
+        profilePopup.style.display = "none";
       });
     }
   
     profilePopup?.addEventListener("click", function (e) {
       if (e.target === profilePopup) {
-        profilePopup.classList.add("hidden");
+        profilePopup.style.display = "none";
       }
     });
     
