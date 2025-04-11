@@ -348,8 +348,8 @@ header{
 
 .logo-bite{
     background: url(../img/bite_transparent_v2.png) no-repeat center;
-    width: 200px; /* Justera storleken efter behov */
-    height: 100px; /* Justera efter bildens proportioner */
+    width: 400px; /* Justera storleken efter behov */
+    height: 200px; /* Justera efter bildens proportioner */
     background-size: contain; /* Ser till att bilden anpassas till div:en */
     display: block;
     position: absolute;
@@ -488,8 +488,8 @@ nav{
   }
 
 .ham-menu{
-    height: 30px;
-    width: 30px;
+    height: 50px;
+    width: 50px;
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -593,6 +593,7 @@ nav{
     position: relative;
     background-color: #fff8f0;  /**/
     padding: 2rem;
+    padding-top: 3rem;
     border-radius: 12px;
     width: 90%;
     max-width: 700px;
@@ -618,7 +619,7 @@ nav{
     border: none;
     padding: 0;
     line-height: 1;
-    z-index: 10;
+    z-index: 1000;
     transition: transform 0.2s ease;
   }
   
@@ -717,7 +718,7 @@ nav{
     border-radius: 5px;
 }
 
-/*Contactform*/
+/*Contactform textarea*/
 #contact-popup textarea {
   width: 100%;
   padding: 10px;
@@ -725,7 +726,8 @@ nav{
   border: 1px solid #ccc;
   border-radius: 5px;
   resize: vertical;
-}
+  padding-top: 0.5rem;
+} 
 
 /* button for reservation */
 /* Knappstil */
@@ -821,10 +823,11 @@ nav{
 
     body.menu-open .logo-bite,
     body.menu-popup-open .logo-bite,
-    body.drink-popup-open .logo-bite {
+    body.drink-popup-open .logo-bite
+    body.contact-popup-open .logo-bite{
         display: none;
     }
-    
+
 
     nav {
         flex-direction: column;  /* Länkarna staplas vertikalt på mindre skärmar */
@@ -856,6 +859,14 @@ nav{
       background-color: white;
       border-radius: 8px;
       width: 100%;
+    }
+    
+    .popup-content .close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 2rem;
+      z-index: 10;
     }
 
   }

@@ -340,7 +340,7 @@ drinkOverlay.addEventListener("click", function () {
 
 
 function closeProfilePopup() {
-    document.getElementById("profilePopup").classList.add("hidden");
+    document.getElementById("profilePopup").style.display = "none";
      // ⬅️ Ladda om sidan för att hämta nya bokningar
   }
 
@@ -465,10 +465,6 @@ document.addEventListener("DOMContentLoaded", function () {
     contactLink.addEventListener("click", function (e) {
       e.preventDefault();
       openContactPopup();
-
-      // Stäng hamburgermenyn
-      document.querySelector(".off-screen-menu").classList.remove("active");
-      document.querySelector(".ham-menu").classList.remove("active");
-    });
+    })  
   }
 });
