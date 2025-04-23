@@ -136,7 +136,7 @@ window.onload = function() {
 
 document.addEventListener("DOMContentLoaded", function () {
     const homeLink = document.getElementById("home-link");
-    const topSection = document.getElementById("top");
+    const topSection = document.getElementById("home");
 
     if (homeLink && topSection) {
         homeLink.addEventListener("click", function (e) {
