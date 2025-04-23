@@ -107,13 +107,13 @@ The color palette is chosen to create a warm and inviting experience that suits 
 
 | **Purpose**       | **Hex Code** | **Preview**                                  | **Description**                                                                 |
 |------------------|--------------|----------------------------------------------|---------------------------------------------------------------------------------|
-| Background        | `#000000`    | ![#000000](https://via.placeholder.com/20/000000/000000?text=+) | Elegant black that creates depth and contrast to text and elements.           |
-| Primary Text      | `#ffffff`    | ![#ffffff](https://via.placeholder.com/20/ffffff/ffffff?text=+) | White text for clear readability on a dark background.                               |
-| Accent (Champagne)| `#c2b280`    | ![#c2b280](https://via.placeholder.com/20/c2b280/c2b280?text=+) | A warm champagne tone that signals exclusivity and is used sparingly.       |
-| Soft Brown        | `#a1866f`    | ![#a1866f](https://via.placeholder.com/20/a1866f/a1866f?text=+) | Neutral soft brown color that provides balance between sections.                      |
-| Success (Green)   | `#16a34a`    | ![#16a34a](https://via.placeholder.com/20/16a34a/16a34a?text=+) | Green color is used for confirmations (ex: "Booking registered!").               |
-| Error (Red)       | `#dc2626`    | ![#dc2626](https://via.placeholder.com/20/dc2626/dc2626?text=+) | Red is used for error messages in forms.                                     |
-| Button Black      | `#000000`    | ![#000000](https://via.placeholder.com/20/000000/000000?text=+) | Used in buttons like "Reservation", "Login", etc., for a uniform expression. |
+| Background        | `#000000`    | ![#000000](static/img/black.png) | Elegant black that creates depth and contrast to text and elements.           |
+| Primary Text      | `#ffffff`    | ![#ffffff](static/img/white.png) | White text for clear readability on a dark background.                               |
+| Accent (Champagne)| `#c2b280`    | ![#c2b280](static/img/champagne.png) | A warm champagne tone that signals exclusivity and is used sparingly.       |
+| Soft Brown        | `#a1866f`    | ![#a1866f](static/img/softb.png) | Neutral soft brown color that provides balance between sections.                      |
+| Success (Green)   | `#16a34a`    | ![#16a34a](static/img/green.png) | Green color is used for confirmations (ex: "Booking registered!").               |
+| Error (Red)       | `#dc2626`    | ![#dc2626](static/img/red.png) | Red is used for error messages in forms.                                     |
+| Button Black      | `#000000`    | ![#000000](static/img/black.png) | Used in buttons like "Reservation", "Login", etc., for a uniform expression. |
 
 
 ### 3. Logo

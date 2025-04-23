@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from .models import Table, Booking, ContactMessage
@@ -9,8 +10,6 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.forms import AuthenticationForm
 from django.views.decorators.csrf import csrf_exempt
-
-
 
 def book_table(request):
     tables = Table.objects.all()

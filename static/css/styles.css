@@ -47,15 +47,6 @@ body{
     outline: 10px#1a1a1a;
     border: 10px #1a1a1a;
     padding: 20px;
-    
-    /*min-width: 100vw; /* Gör att varje box tar upp hela skärmens bredd */
-    /*height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-     /* Snäpper fast varje sektion vid scroll */
-    /*background-size: cover;
-    background-position: center;*/
 }
 
 #box1{
@@ -230,34 +221,6 @@ body{
     color: white;
   }
 
-/* Navigationsknappar */
-/*.prev-btn, .next-btn {
-    position: absolute;
-    top: 50%; /* Flytta ner knapparna om det behövs */
-/*    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    font-size: 2rem;
-    padding: 10px 20px;
-    cursor: pointer;
-    z-index: 1;
-    border-radius: 5px;
-    background: red !important;
-}
-
-/* Placering av knappar */
-/*.prev-btn { 
-    left: 5%; 
-}
-.next-btn { 
-    right: 5%; 
-}
-
-/* Hover-effekt */
-/*.prev-btn:hover, .next-btn:hover {
-    background: rgba(0, 0, 0, 0.8);
-}*/
 
 button {
     -webkit-appearance: none;
