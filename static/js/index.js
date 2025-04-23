@@ -57,7 +57,6 @@ window.onload = function () {
   }
 };
 
-
 /*-------*/
 /*modal - reservation/register/login button and form*/
 function openPopup() {
@@ -76,7 +75,6 @@ function openRegisterPopup(){
 function closeRegisterPopup() {
     document.getElementById("register-popup").style.display = "none";
 }
-
 
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("popup").style.display = "none"; // Tvinga att det är dolt vid start
@@ -97,11 +95,10 @@ document.getElementById("register-link").addEventListener("click", function(even
     openRegisterPopup(); // Show the reservation popup
 });
 
-
 document.addEventListener("DOMContentLoaded", function () {
   const popup = document.getElementById("popup");
   const registerPopup = document.getElementById("register-popup");
-  const contactPopup = document.getElementById("contact-popup");
+  //const contactPopup = document.getElementById("contact-popup");
 
   function closePopup() {
       popup.style.display = "none";
@@ -111,14 +108,14 @@ document.addEventListener("DOMContentLoaded", function () {
       registerPopup.style.display = "none";
   }
 
-  function closeContactPopup() {
-      contactPopup.style.display = "none";
-  }
+  //function closeContactPopup() {
+  //    contactPopup.style.display = "none";
+  //}
 
   window.addEventListener("click", function (event) {
       if (event.target === popup) closePopup();
       if (event.target === registerPopup) closeRegisterPopup();
-      if (event.target === contactPopup) closeContactPopup();
+      //if (event.target === contactPopup) closeContactPopup();
   });
 });
 
@@ -131,7 +128,6 @@ window.onload = function() {
         document.getElementById('delayed-text').classList.add('visible');
     }, 1000); // Fördröjningen innan animationen startar
 };
-
 
 //----------------------Så man åker upp på sida----------//
 
@@ -160,9 +156,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-
 //---- Bokningsformuläret ----------//
-
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("reservationForm");
     const messageBox = document.getElementById("reservationMessage");
