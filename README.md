@@ -105,13 +105,23 @@ The color palette is chosen to create a warm and inviting experience that suits 
 - Text color: White for high contrast and readability.
 - Accent colors: Natural shades of beige, brown and champagne to enhance the feeling of harmony, balance and exclusivity.
 
-The color palette was also tested in contrast controls for accessibility.
+| **Purpose**       | **Hex Code** | **Preview**                                  | **Description**                                                                 |
+|------------------|--------------|----------------------------------------------|---------------------------------------------------------------------------------|
+| Background        | `#000000`    | ![#000000](https://via.placeholder.com/20/000000/000000?text=+) | Elegant black that creates depth and contrast to text and elements.           |
+| Primary Text      | `#ffffff`    | ![#ffffff](https://via.placeholder.com/20/ffffff/ffffff?text=+) | White text for clear readability on a dark background.                               |
+| Accent (Champagne)| `#c2b280`    | ![#c2b280](https://via.placeholder.com/20/c2b280/c2b280?text=+) | A warm champagne tone that signals exclusivity and is used sparingly.       |
+| Soft Brown        | `#a1866f`    | ![#a1866f](https://via.placeholder.com/20/a1866f/a1866f?text=+) | Neutral soft brown color that provides balance between sections.                      |
+| Success (Green)   | `#16a34a`    | ![#16a34a](https://via.placeholder.com/20/16a34a/16a34a?text=+) | Green color is used for confirmations (ex: "Booking registered!").               |
+| Error (Red)       | `#dc2626`    | ![#dc2626](https://via.placeholder.com/20/dc2626/dc2626?text=+) | Red is used for error messages in forms.                                     |
+| Button Black      | `#000000`    | ![#000000](https://via.placeholder.com/20/000000/000000?text=+) | Used in buttons like "Reservation", "Login", etc., for a uniform expression. |
+
 
 ### 3. Logo
 The logo (“logo-bite”) is centrally positioned and responsive.
 - It is clearly displayed on larger screens but is automatically hidden during pop-up activities and mobile menus so as not to block features.
 - The image is vector-based and adapted to maintain high quality in all resolutions.<br><br>
-![logo](static/img/bite_transparent_v2.png)
+![logo](static/img/bite_transparent_v2_small.png)
+
 ### 4. Geometry / Layout
 - Grid structure: Flexbox is used to create dynamic sections, centering and popup positioning.
 - Carousel layout: Built with vw and vh dimensions to take up the entire screen and work smoothly on all devices.
@@ -127,22 +137,22 @@ Wireframes were developed at an early stage to guide layout decisions and intera
 - Popups for forms (booking, login, registration, contact)
 - Mobile layout with menu navigation
 
-(Screenshots or links to wireframes can be placed here if available)
-
 ## Implemented Functionality per Section
 ### Home Page
 - Contains welcome message and hero image
 - Entry point to carousel and navigation
 
 #### Carousel Section
-- Fullscreen image carousel that allows horizontal navigation via arrows
+- Fullscreen image carousel that allows horizontal navigation via arrows<br><br>
+![arrow](static/img/arrow2.png) ![arrow](static/img/arrow6.png)<br><br>
 - Each slide displays themed content, including food and drink menus
 
 #### Popup Forms
 - Booking, contact, registration, and login forms are implemented as modals
 - Appear centered on top of all content with a dark overlay for focus
 - Close on outside click or close button
-- Designed for both desktop and mobile
+- Designed for both desktop and mobile <br><br>
+![reservation](static/img/reservationform_small.png)![register](static/img/Register_small.png)![contactus](static/img/contactus_small.png)
 
 #### Mobile-Friendly Layout
 - Fully responsive design using media queries
