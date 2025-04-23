@@ -5,11 +5,9 @@ from django.utils import timezone
 from django.utils.dateparse import parse_datetime
 from datetime import timedelta
 from django.contrib import messages
-from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.forms import AuthenticationForm
-from .forms import ContactForm
 from django.views.decorators.csrf import csrf_exempt
 
 
