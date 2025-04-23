@@ -28,6 +28,8 @@
     * [3.Error messages were not displayed on form errors](#3-error-messages-were-not-displayed-on-form-errors)
     * [4.Contact form closed regardless of result](#4-contact-form-closed-regardless-of-result)
     * [5.Scrolled to the wrong section in the hamburger menu](#5-scrolled-to-the-wrong-section-in-the-hamburger-menu)
+* [Conclusion](#conclusion)
+* [Thanks to](#thanks-to)
 ## About the project
 
 Bite is a full-stack web application developed for a modern restaurant experience. The application makes it easy for both new and returning guests to interact with the restaurant digitally – directly via the website. The focus has been on user experience (UX), responsive design and interactive functionality.
@@ -90,13 +92,13 @@ As a developer, I want to be able to write unit tests to ensure that the functio
 
 ## UX & Design 
 
-#### 1. Font
+### 1. Font
 
 The project uses Google Fonts to create a modern yet elegant feel:
 - Poppins - used for body text – a sans-serif font that is stylish and easy to read.
 - Playfair Display - used for headlines – a serif font that adds personality and a touch of luxury.
 
-#### 2. Color Scheme
+### 2. Color Scheme
 
 The color palette is chosen to create a warm and inviting experience that suits an exclusive restaurant environment:
 - Background: Dark tones (black / dark gray) for elegance.
@@ -105,50 +107,60 @@ The color palette is chosen to create a warm and inviting experience that suits 
 
 The color palette was also tested in contrast controls for accessibility.
 
-
-#### 3. Logo
-
+### 3. Logo
 The logo (“logo-bite”) is centrally positioned and responsive.
 - It is clearly displayed on larger screens but is automatically hidden during pop-up activities and mobile menus so as not to block features.
-- The image is vector-based and adapted to maintain high quality in all resolutions.
-
-
-#### 4. Geometry / Layout
+- The image is vector-based and adapted to maintain high quality in all resolutions.<br><br>
+![logo](static/img/bite_transparent_v2.png)
+### 4. Geometry / Layout
 - Grid structure: Flexbox is used to create dynamic sections, centering and popup positioning.
 - Carousel layout: Built with vw and vh dimensions to take up the entire screen and work smoothly on all devices.
 - Popup forms: All forms (booking, contact, registration, login) are placed centrally and are overlaid with a dark background for focus.
 
+### 5. Wireframing & Proposed / Implemented Functionality per Page
+#### Wireframes
+Wireframes were developed at an early stage to guide layout decisions and interaction flows. These were iteratively refined as the project evolved.
 
-#### 5. Wireframing & Proposed / Implemented Functionality per Page
-- Wireframes were developed early in the development process and iterated as the project progressed.
-- Home page: Welcome text + image
-- Carousel section: Navigation between menu blocks with arrows
-- Popup design: Used for all forms
-- Mobile layout: Adapted with media queries for optimal experience
+#### Screens include:
+- Landing page
+- Carousel section
+- Popups for forms (booking, login, registration, contact)
+- Mobile layout with menu navigation
 
-- Fullscreen carousel
+(Screenshots or links to wireframes can be placed here if available)
 
-    - A full-screen image carousel that appears immediately after the home page. 
-<br>The user can scroll between sections using arrows. The carousel contains both images and menus.
+## Implemented Functionality per Section
+### Home Page
+- Contains welcome message and hero image
+- Entry point to carousel and navigation
 
-- Popup-forms
+#### Carousel Section
+- Fullscreen image carousel that allows horizontal navigation via arrows
+- Each slide displays themed content, including food and drink menus
 
-    - All forms (booking, registration, contact, login) open in stylish popups on top of the page.
-        SCREENSHOTS
-- Mobile-friendly layout
+#### Popup Forms
+- Booking, contact, registration, and login forms are implemented as modals
+- Appear centered on top of all content with a dark overlay for focus
+- Close on outside click or close button
+- Designed for both desktop and mobile
 
-    -  Responsive design with custom popups and navigation for smaller screens.
+#### Mobile-Friendly Layout
+- Fully responsive design using media queries
+- Navigation adapts to smaller screens
+- Popup forms and overlays function identically on mobile
 
-- Overlay menus and contact forms
+#### Overlay Menus & Contact Forms
+- Menus and wine list presented in fullscreen modal overlays
+- Contact form uses similar design and interaction pattern
+- All overlays block background interaction while active
 
-    -  The wine list, menu, and contact form appear over all content and make the rest of the page inaccessible until the popup is closed.
-
-- "My side"-view for users with login
-
-    - Shows logged in user's bookings
-    - Ability to cancel directly in the view
-    - Dynamic content display based on login status
-
+#### "My Side" – Logged-In User View
+- Personalized view showing user's current and past bookings
+- Allows for direct cancellation of bookings
+- Conditional rendering of content based on authentication status<br><br>
+![myside](static/img/mysideloggedout1.png)
+![myside](static/img/mysideloggedout.png)
+![myside](static/img/mysideloggedin.png)
 
 ## Technologies used
 
@@ -157,7 +169,6 @@ The logo (“logo-bite”) is centrally positioned and responsive.
 - **HTML5, CSS3, JavaScript (ES6),** – Used to structure, design, and create dynamic interfaces for the entire website.
 
 - <a href="https://www.python.org/">Python</a> - Used for backend logic, form handling, validation, and interaction with the database via Django.
-
 - <a href="https://www.djangoproject.com/">Django</a> - was used as the architectural framework for the project and follows the Model-Template-View (MTV) principle. It separates logic, database structure, and presentation, creating a clear and scalable structure for the application – perfect for a restaurant booking solution with multiple features and user flows.
 
 
@@ -298,8 +309,6 @@ Below are the most important testing steps:
 
     - JSHint for JavaScript
 
-    - flake8 / PEP8 standard for Python
-
 - 🛡️ Django CSRF protection tested, including error handling and feedback
 
 - 🧪 Where applicable: Automatic tests have been written in tests.py to ensure functionality in the backend (e.g. booking flow, model validations and views)
@@ -353,3 +362,17 @@ I replaced `href="#carousel-section"` with a `scrollIntoView()` function in Java
 #### Lesson learned:
 Built-in `href="#..."` does not always work as well in combination with fixed headers or mobile-friendly layouts. Direct control with JavaScript provides more precision and better control over the user's movement on the page.
 
+
+## Conclusion
+Bite is a full-stack project developed with the goal of offering a modern, elegant and user-friendly online restaurant experience. By combining technologies such as Django, JavaScript and responsive design, a completely digital booking flow has been created where users can easily book tables, view menus, log in and manage their bookings.
+
+The project has given me the opportunity to apply both front-end and back-end skills in practice, with a focus on user experience, interaction and accessibility. Great emphasis has been placed on testing, security and code structure – making the solution both stable and scalable for future development.
+
+This project reflects my journey as a developer and is a testament to what I have learned in web development. The work on Bite is not finished – there are many exciting features planned for the future, and I look forward to continuing to build on it.
+
+### Thanks to
+- Code Institute – for a structured and educational training that has provided the foundation for this project.
+- The Slack community – for quick support, inspiration and guidance during coding and debugging.
+- GitHub and Stack Overflow – for technical solutions, examples and discussions that helped solve specific problems.
+- W3C, JSHint – for available validation tools that helped me write clean and correct code.
+- Pixabay & Canva – for high-quality images and tools that contributed to the visual identity of the project.
