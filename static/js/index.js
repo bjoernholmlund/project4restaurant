@@ -406,6 +406,11 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 //CONTACTFORM//
+  // Stäng popup
+  function closeContactPopup() {
+    document.getElementById("contact-popup").style.display = "none";
+  }
+
 document.addEventListener("DOMContentLoaded", function () {
   const contactForm = document.getElementById("contactForm");
   const contactMessage = document.getElementById("contactMessage");
@@ -424,9 +429,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Stäng popup
-  function closeContactPopup() {
-    contactPopup.style.display = "none";
-  }
+  //function closeContactPopup() {
+  //  contactPopup.style.display = "none";
+  //}
 
   // Klick på hamburgermenyns kontaktlänk
   contactLink.addEventListener("click", function (e) {
