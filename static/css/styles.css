@@ -627,14 +627,33 @@ nav{
     transform: scale(1.2);
     color: #a33;
   }
-  
+
   .profile-popup {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+  }
+  
+  .popup-box {
+    background-color: white;
+    border-radius: 0.5rem;
+    width: 100%;
+    max-width: 28rem;
+    padding: 1.5rem;
+    position: relative;
+  }
+  
+  /*.profile-popup {
     @apply fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50;
   }
 
   .popup-box {
     @apply bg-white rounded-lg w-full max-w-md p-6 relative;
-  }
+  }*/
 
   .menu-title {
     font-size: 2rem;
