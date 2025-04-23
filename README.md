@@ -13,8 +13,8 @@
     * [User Stories](#user-stories)
     * [UX-design](#-ux--design)
         * [1.Font](#1-font)
-        * [2.Logo](#2-color-scheme)
-        * [3.Color Scheme](#3-logo)
+        * [2.Logo](#2-logo)
+        * [3.Color Scheme](#3-color-scheme)
         * [4.Geometry Layout](#4-geometry--layout)
         * [5.Wireframing & Proposed / Implemented Functionality per Page](#5-wireframing--proposed--implemented-functionality-per-page)
 * [Technologies used](#️-technologies-used)
@@ -150,32 +150,70 @@ The logo (“logo-bite”) is centrally positioned and responsive.
     - Dynamic content display based on login status
 
 
-
-
 ## 🛠️ Technologies used
 
-#### Languages, Frameworks & Tools
+#### Languages & Frameworks
 
-- **HTML5, CSS3, JavaScript (ES6), Python** – These were used to build the structure, styling, interactivity, and backend logic of the application. Python served as the foundation for the server-side code, especially through the Django framework.
+- **HTML5, CSS3, JavaScript (ES6),** – Used to structure, design, and create dynamic interfaces for the entire website.
 
-- <a href="https://github.com/bjoernholmlund/project4restaurant">Github</a> - was used for version control and as a remote repository for the project's code base. It also served as a connection point to Heroku, where the latest version of the application could be automatically deployed after each push to the master branch. This enabled continuous delivery and a smooth development process.
-
-- <a href="https://www.heroku.com/">Heroku</a> - is a cloud-based Platform as a Service (PaaS) that enables easy and seamless deployment of this full-stack Django application. It handles everything from server environment to database connections and allows automatic updates directly from GitHub, making development and deployment to production fast and secure.
+- <a href="https://www.python.org/">Python</a> - Used for backend logic, form handling, validation, and interaction with the database via Django.
 
 - <a href="https://www.djangoproject.com/">Django</a> - was used as the architectural framework for the project and follows the Model-Template-View (MTV) principle. It separates logic, database structure, and presentation, creating a clear and scalable structure for the application – perfect for a restaurant booking solution with multiple features and user flows.
 
-#### Tools used
+
+#### Version Control & Deployment
+
+- <a href="https://github.com/bjoernholmlund/project4restaurant">Github</a> - was used for version control and as a remote repository for the project's code base. It also served as a connection point to Heroku, where the latest version of the application could be automatically deployed after each push to the master branch. This enabled continuous delivery and a smooth development process.
+
+- <a href="https://github.com/projects">GitHub Projects</a> - The project's development was structured according to an agile working method with user stories, tasks and columns (To Do, In Progress, Done) for clear traceability.
+
+- <a href="https://www.heroku.com/">Heroku</a> - is a cloud-based Platform as a Service (PaaS) that enables easy and seamless deployment of this full-stack Django application. It handles everything from server environment to database connections and allows automatic updates directly from GitHub, making development and deployment to production fast and secure.
+
+####  Database & Static File Management
 
 - <a href="">PostgreSQL</a> - A free and open-source relational database management system emphasizing extensibility and technical standards compliance. Designed to handle high range of workloads including Web services with many concurrent users.
 
 - <a href="http://whitenoise.evans.io/en/stable/">WhiteNoise</a> - Used to easily allow the Deployed project to serve it's own static files.
 
--  <a href="https://validator.w3.org/">W3C HTML Validator</a>, <a href="https://jigsaw.w3.org/css-validator/">W3C CSS Validator</a> & <a href="https://jshint.com/">JSHint</a> - Used to validate and improve the quality of my code, both in terms of syntax and structure. Running HTML, CSS, and JavaScript validation ensured that the code followed standards and was free of common errors that could impact functionality or compatibility.
 
-- <a href="https://www.codewof.co.nz/style/python3/">PEP 8 Online Validator</a> - to check my python code to be consistent with PEP8 requirements.
+#### Styling & Design
+
+- <a href="https://fonts.google.com/">Google Fonts – Poppins & Playfair Display</a> - To create a balance between modernity and elegance, two complementary fonts from Google Fonts were used:
+
+    - Poppins – A geometric sans-serif font used for all body text and menu information. It gives a clean, airy and easy-to-read impression that works well on both small and large screens.
+
+    - Playfair Display – A serif font used for headlines and section titles. It gives a luxurious and classic expression that reinforces the premium feel of the restaurant.
+
+Together, these fonts create a typographic contrast that both supports the aesthetics of the page and improves readability. The combination contributes to a strong visual brand and a harmonious user experience.
+
+- <a href="https://www.canva.com/sv_se/skapa/social-medier-grafik/">Canva – Logo Design</a> - Canva was used to create the project’s logo, logo-bite. The tool offers a simple and intuitive interface for graphic design, which made it possible to quickly create a professional and visually appealing logo that matches the restaurant’s brand. The logo is used in the header to create recognition and strengthen the identity of the site. The design is responsive and adapted for both desktop and mobile views.
+
+- <a href="https://pixabay.com/">Pixabay</a> - All background images and some decorative elements on the page are taken from Pixabay, a platform for free images and videos with an open license (CC0). These images are free to use in both commercial and non-commercial projects without requiring attribution - but as a sign of respect and transparency, the source is mentioned here.
+
+    - Pixabay was used to:
+
+        - Create visually strong sections in the image carousel.
+
+        - Strengthen thematic parts of the menu (for example, dessert and drink images).
+
+        - Contribute to the overall experience of a professional and atmospheric restaurant website.
+
+The images have been carefully selected to match the restaurant's aesthetic, adjusted in size and in some cases edited with vignetting and color filters to create a unified design.
 
 - <a href="https://freebiesupply.com/blog/css-arrows/">Arrows</a> - The left and right arrow icons in the image carousel are inspired by this resource. They were adapted and integrated with custom SVG styling to blend into the design and provide a smooth navigation experience between slides. The arrows are responsive, accessible, and work on both desktop and mobile devices.
 
----
+
+#### Forms & Interactivity
+
+- <a href="https://pypi.org/project/django-widget-tweaks/">Django widget tweaks</a> – This Django extension makes it possible to customize forms directly in templates using filters such as add_class, add_placeholder, etc. It enables stylistically uniform form fields without having to create custom forms from scratch.
+
+- <a href="https://www.w3schools.com/jsref/api_fetch.asp">JavaScript Fetch API + FormData</a> – Used in all your popup forms (reservation, login, register, contact) for AJAX requests to the Django backend without reloading the page.
+
+- JavaScript scrollIntoView() + smooth scroll - Used in the hamburger menu to smoothly scroll to the correct section of the page and create a seamless navigation.
 
 
+#### Testing & Validation
+
+-  <a href="https://validator.w3.org/">W3C HTML Validator</a>, <a href="https://jigsaw.w3.org/css-validator/">W3C CSS Validator</a> & <a href="https://jshint.com/">JSHint</a> - Used to validate and improve the quality of my code, both in terms of syntax and structure. Running HTML, CSS, and JavaScript validation ensured that the code followed standards and was free of common errors that could impact functionality or compatibility.
+
+- <a href="https://www.codewof.co.nz/style/python3/">PEP 8 Online Validator</a> - to check my python code to be consistent with PEP8 requirements.
