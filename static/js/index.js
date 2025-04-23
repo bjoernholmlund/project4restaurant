@@ -1,8 +1,8 @@
+/* jshint esversion: 6 */
+/* jshint esversion: 11 */
 /*hammenu*/
 const hamMenu = document.querySelector('.ham-menu');
 const offScreenMenu = document.querySelector('.off-screen-menu');
-const menuLinks = document.querySelectorAll('.off-screen-menu a');
-
 
 /*carousel*/
 const carousel = document.querySelector('.carousel-container');
@@ -10,7 +10,7 @@ const slides = document.querySelectorAll('.box');
 const prevBtn = document.querySelector('.prev-btn');
 const nextBtn = document.querySelector('.next-btn');
 
-let currentIndex = - 1 // Starta på första bilden
+let currentIndex = - 1; // Starta på första bilden
 const totalSlides = slides.length;
 
 function updateCarousel() {
@@ -47,7 +47,7 @@ hamMenu.addEventListener('click', () => {
     hamMenu.classList.toggle('active');
     offScreenMenu.classList.toggle('active');
     document.body.classList.toggle('menu-open');
-})
+});
 // så man hamnar högst upp på sidan vid start, förhindrar vid mobiler.
 window.onload = function () {
   if (window.innerWidth < 768) {
@@ -58,31 +58,16 @@ window.onload = function () {
 };
 
 
-//document.addEventListener("DOMContentLoaded", function () {
-//  if (window.location.hash === "") {
-//    window.scrollTo(0, 0);
-//  }
-//});
-
 /*-------*/
 /*modal - reservation/register/login button and form*/
 function openPopup() {
     document.getElementById("popup").style.display = "flex";
 }
 
-function closePopup() {
-    document.getElementById("popup").style.display = "none";
-}
-
 //  REGISTRATION POPUP
 function openRegisterPopup(){
     document.getElementById("register-popup").style.display = "flex";
 }
-
-function closeRegisterPopup() {
-    document.getElementById("register-popup").style.display = "none";
-}
-
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -105,21 +90,29 @@ document.getElementById("register-link").addEventListener("click", function(even
 });
 
 
-// Stänger popup om användaren klickar utanför
-window.onclick = function(event) {
-    let popup = document.getElementById("popup");
-    let registerPopup = document.getElementById("register-popup");
-    let contactPopup = document.getElementById("contact-popup");
-    if (event.target == popup) {
-        closePopup();
-    }
-    if (event.target == registerPopup) {
-        closeRegisterPopup();
-    }
-    if (event.target == contactPopup) {
-        closeContactPopup();
-    }
-};
+document.addEventListener("DOMContentLoaded", function () {
+  const popup = document.getElementById("popup");
+  const registerPopup = document.getElementById("register-popup");
+  const contactPopup = document.getElementById("contact-popup");
+
+  function closePopup() {
+      popup.style.display = "none";
+  }
+
+  function closeRegisterPopup() {
+      registerPopup.style.display = "none";
+  }
+
+  function closeContactPopup() {
+      contactPopup.style.display = "none";
+  }
+
+  window.addEventListener("click", function (event) {
+      if (event.target === popup) closePopup();
+      if (event.target === registerPopup) closeRegisterPopup();
+      if (event.target === contactPopup) closeContactPopup();
+  });
+});
 
 // Vänta tills sidan har laddats helt
 window.onload = function() {
@@ -297,7 +290,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-// ------------------ MENY ------------------
+// ------------------ MENY ------------------//
 function openMenuPopup() {
   document.getElementById("menu-popup").style.display = "flex";
   document.body.classList.add("popup-open");
@@ -345,13 +338,6 @@ drinkOverlay.addEventListener("click", function () {
 });
 
 //--------------PROFILE--------------
-
-
-function closeProfilePopup() {
-    document.getElementById("profilePopup").style.display = "none";
-     // ⬅️ Ladda om sidan för att hämta nya bokningar
-  }
-
 
 document.addEventListener("DOMContentLoaded", function () {
     const profileLink = document.getElementById("profile-link"); // <- ID på din "Min sida"-länk
@@ -418,6 +404,15 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 //CONTACTFORM//
+document.addEventListener("DOMContentLoaded", function () {
+  const contactForm = document.getElementById("contactForm");
+  const contactMessage = document.getElementById("contactMessage");
+
+  if (!contactForm || !contactMessage) {
+    console.warn("contactForm eller contactMessage hittades inte");
+    return;
+  }
+
 contactForm.addEventListener("submit", function (e) {
   e.preventDefault();
   const formData = new FormData(contactForm);
@@ -462,10 +457,6 @@ function openContactPopup() {
   document.getElementById("contact-popup").style.display = "flex";
 }
 
-function closeContactPopup() {
-  document.getElementById("contact-popup").style.display = "none";
-}
-
 // Event för hamburgermenyns "Contact"-länk
 document.addEventListener("DOMContentLoaded", function () {
   const contactLink = document.getElementById("contact-link");
@@ -473,6 +464,8 @@ document.addEventListener("DOMContentLoaded", function () {
     contactLink.addEventListener("click", function (e) {
       e.preventDefault();
       openContactPopup();
-    })  
+    });  
   }
+  }
+  );
 });
