@@ -145,7 +145,8 @@ Wireframes were developed at an early stage to guide layout decisions and intera
 #### Carousel Section
 - Fullscreen image carousel that allows horizontal navigation via arrows<br><br>
 ![arrow](static/img/arrow2.png) ![arrow](static/img/arrow6.png)<br><br>
-- Each slide displays themed content, including food and drink menus
+- Each slide displays themed content, including food and drink menus<br><br>
+![menuanddrink](static/img/menuanddrink.png)
 
 #### Popup Forms
 - Booking, contact, registration, and login forms are implemented as modals
