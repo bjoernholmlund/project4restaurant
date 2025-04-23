@@ -24,19 +24,17 @@
 
 ## 📖 About the project
 
-Bite is a full-stack web application for a restaurant where users can:
+Bite is a full-stack web application developed for a modern restaurant experience. The application makes it easy for both new and returning guests to interact with the restaurant digitally – directly via the website. The focus has been on user experience (UX), responsive design and interactive functionality.
 
-- Book a table directly via a pop-up form
+- Book a table directly via a convenient pop-up form placed on top of the page for increased accessibility.
 
-- Create an account or log in
+- Create an account or log in to access personalized functionality.
 
-- View and cancel their own reservations
+- View your own reservations, including the ability to cancel directly in a user-friendly pop-up window.
 
-- Read the menu and drink list in interactive pop-ups
+- Read menus and wine lists in separate pop-ups with a clear structure, inspired by fine-dining aesthetics.
 
-- Send contact messages to the restaurant
-
-The project is built with a focus on UX, responsive design and modern functionality.
+- Send messages to the restaurant via a contact form with confirmation and automatic reset.
 
 
 ## User experience:
@@ -158,7 +156,7 @@ The logo (“logo-bite”) is centrally positioned and responsive.
 
 #### Languages, Frameworks & Tools
 
-- **HTML5, CSS3, JavaScript (ES6)** – Used for the structure, style, and dynamic user interface.
+- **HTML5, CSS3, JavaScript (ES6), Python** – These were used to build the structure, styling, interactivity, and backend logic of the application. Python served as the foundation for the server-side code, especially through the Django framework.
 
 - <a href="https://github.com/bjoernholmlund/project4restaurant">Github</a> - was used for version control and as a remote repository for the project's code base. It also served as a connection point to Heroku, where the latest version of the application could be automatically deployed after each push to the master branch. This enabled continuous delivery and a smooth development process.
 
@@ -181,59 +179,3 @@ The logo (“logo-bite”) is centrally positioned and responsive.
 ---
 
 
-## 📂 Functions
-
-### ✅ Guest Users
-
-- Book a table
-
-- See menues
-
-- Send a contactform
-
-### 🔐 Logged in Users
-
-- Register an account
-
-- See own reservations
-
-- Cancel a table 
-
-- Log out
-
----
-
-
-
-
----
-
-
-## 🔄 Deployment & Security
-
-- The web application is deployed on Heroku with the following security and configuration measures:
-
-### ✅ Security
-
-- SECRET_KEY, database credentials and other sensitive values ​​are handled in env.py which is not versioned (thanks to .gitignore).
-
-- DEBUG=False is always enabled in production environment to avoid leakage of sensitive information in case of error messages.
-
-- CSRF protection and Django's built-in security features are used.
-
-- Login and registration are done via secure POST calls (AJAX) with CSRF token.
-
-
-### 🚀 Deployment
-
-- Heroku is used as hosting platform.
-
-- Gunicorn is used as a WSGI server.
-
-- requirements.txt contains all Python packages to replicate the environment.
-
-- Procfile specifies the command Heroku runs to start the app.
-
-- runtime.txt defines the Python-version.
-
-- Collectstatic is automatically run to handle static files in production.
