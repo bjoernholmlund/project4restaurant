@@ -457,6 +457,9 @@ function openContactPopup() {
   document.getElementById("contact-popup").style.display = "flex";
 }
 
+function closeContactPopup() {
+  document.getElementById("contact-popup").style.display = "none";
+}
 // Event för hamburgermenyns "Contact"-länk
 document.addEventListener("DOMContentLoaded", function () {
   const contactLink = document.getElementById("contact-link");
@@ -467,5 +470,5 @@ document.addEventListener("DOMContentLoaded", function () {
     });  
   }
   }
-  );
+);
 });
