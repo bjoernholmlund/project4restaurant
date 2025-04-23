@@ -19,21 +19,23 @@
         * [5.Wireframing & Proposed / Implemented Functionality per Page](#5-wireframing--proposed--implemented-functionality-per-page)
 * [Technologies used](#️-technologies-used)
 * [Deployment & Security](#-deployment--security)
-* []()
-* []()
-
-## 📖 About the project
+* [Features](#features)
+* [Future Features](#future-features)
+* [Testing](#testing)
+* [Found Bugs & Fixes](#found-bugs--fixes)
+    * [1.Popup did not block the content behind](#1-popup-did-not-block-the-content-behind)
+    * [2.Z-index issue with logo in mobile mode](#2-z-index-issue-with-logo-in-mobile-mode)
+    * [3.Error messages were not displayed on form errors](#3-error-messages-were-not-displayed-on-form-errors)
+    * [4.Contact form closed regardless of result](#4-contact-form-closed-regardless-of-result)
+    * [5.Scrolled to the wrong section in the hamburger menu](#5-scrolled-to-the-wrong-section-in-the-hamburger-menu)
+## About the project
 
 Bite is a full-stack web application developed for a modern restaurant experience. The application makes it easy for both new and returning guests to interact with the restaurant digitally – directly via the website. The focus has been on user experience (UX), responsive design and interactive functionality.
 
 - Book a table directly via a convenient pop-up form placed on top of the page for increased accessibility.
-
 - Create an account or log in to access personalized functionality.
-
 - View your own reservations, including the ability to cancel directly in a user-friendly pop-up window.
-
 - Read menus and wine lists in separate pop-ups with a clear structure, inspired by fine-dining aesthetics.
-
 - Send messages to the restaurant via a contact form with confirmation and automatic reset.
 
 
@@ -86,7 +88,7 @@ As a developer, I want to be able to deploy the website via Heroku so that it is
 As a developer, I want to be able to write unit tests to ensure that the functionality works as expected.
 
 
-## 🎨 UX & Design 
+## UX & Design 
 
 #### 1. Font
 
@@ -144,13 +146,11 @@ The logo (“logo-bite”) is centrally positioned and responsive.
 - "My side"-view for users with login
 
     - Shows logged in user's bookings
-
     - Ability to cancel directly in the view
-
     - Dynamic content display based on login status
 
 
-## 🛠️ Technologies used
+## Technologies used
 
 #### Languages & Frameworks
 
@@ -193,9 +193,7 @@ Together, these fonts create a typographic contrast that both supports the aesth
     - Pixabay was used to:
 
         - Create visually strong sections in the image carousel.
-
         - Strengthen thematic parts of the menu (for example, dessert and drink images).
-
         - Contribute to the overall experience of a professional and atmospheric restaurant website.
 
 The images have been carefully selected to match the restaurant's aesthetic, adjusted in size and in some cases edited with vignetting and color filters to create a unified design.
@@ -216,4 +214,142 @@ The images have been carefully selected to match the restaurant's aesthetic, adj
 
 -  <a href="https://validator.w3.org/">W3C HTML Validator</a>, <a href="https://jigsaw.w3.org/css-validator/">W3C CSS Validator</a> & <a href="https://jshint.com/">JSHint</a> - Used to validate and improve the quality of my code, both in terms of syntax and structure. Running HTML, CSS, and JavaScript validation ensured that the code followed standards and was free of common errors that could impact functionality or compatibility.
 
-- <a href="https://www.codewof.co.nz/style/python3/">PEP 8 Online Validator</a> - to check my python code to be consistent with PEP8 requirements.
+
+## Implementation and Security
+#### Implementation Process
+
+The project is hosted on Heroku, a cloud-based platform that enables smooth deployment of full-stack applications.
+
+- Steps to deploy the project:
+
+    - The code is versioned with Git and pushed to GitHub.
+    - Heroku is connected to GitHub and configured to automatically update the project from the master/main branch.
+    - In Heroku, Gunicorn is used as a WSGI server to run Django in production.
+    - WhiteNoise is used to handle static files (CSS, JavaScript, images) directly from the app without an external server.
+    - A PostgreSQL database is used in production, created and managed by Heroku's own resources.
+    - Collectstatic is automatically run at each deployment to collect and manage static files.
+    - The following files and conditions are required and used in the deployment:
+    - requirements.txt – All required Python packages.
+    - Profile – Specifies Heroku's startup process (web: gunicorn projectname.wsgi).
+    - runtime.txt – Specifies the Python version to use (e.g. python-3.11.5).
+    - env.py – Contains sensitive information, which is not pushed to GitHub.
+    - settings.py – Contains dynamic handling of DEBUG, ALLOWED_HOSTS, and DATABASES depending on whether the project is running locally or on Heroku.
+
+#### Security Considerations
+- DEBUG = False in production to avoid exposing sensitive information.
+- SECRET_KEY and other secret variables are stored in env.py (locally) and under Config Vars in Heroku.
+- ALLOWED_HOSTS is set to only allow specific domains.
+- CSRF protection is used in all Django forms.
+- Error handling with try/except and fallback pages are implemented.
+- All forms check user input to prevent unauthorized POST calls and broken validations.
+- Django's built-in authentication is used, which protects against common vulnerabilities such as SQL Injection and XSS. 
+
+## Features
+
+This web application has been developed with a focus on user experience, smooth interactions, and a modern, responsive interface. The features are designed to make it easier for both restaurant guests and administrators – from booking tables to managing users and contact requests. Below are the core features that form the core of the project:
+
+- Fullscreen image carousel on the landing page for a visually appealing first impression
+- Popup forms for booking, login, registration and contact, integrated into the interface
+- User authentication (login/logout) with feedback and protected views
+- Booking system with double booking control and cancellation option
+- Admin panel via Django for managing bookings and users
+- Responsive layout that adapts to desktop, tablet and mobile
+- AJAX-based forms that are submitted without page loading for a smooth user experience
+- Dynamic menus and drink lists displayed in modal overlays
+- Conditional display of content depending on whether the user is logged in or not
+- Contact form with validation and feedback to the user after submitting a message
+
+## Future Features
+This project is intended to continue to evolve over time, with several planned improvements and new features aimed at creating even greater value for both guests and administrators. Below is an overview of features planned or being considered for future releases:
+
+- ✉️ Email confirmations for bookings for increased security and clear communication
+
+- 📊 Admin dashboard with booking statistics and user insights
+
+- 📅 Responsive calendar overview to show available times directly
+
+- 👤 User profile page where registered users can change their details
+
+- 🌐 Multi-language support (e.g. switching between Swedish and English)
+
+- ⭐ Review system where guests can leave feedback after their visit
+
+
+## Testing
+The project has undergone extensive manual testing to ensure a stable, responsive, and user-friendly experience across devices and scenarios. The focus has been on testing everything from form flows and popup behavior to backend logic and security. Validation tools have been used to maintain high code quality, and Django's built-in error handling and security features have been confirmed to work as expected.
+
+Below are the most important testing steps:
+
+- 📱 Manual testing on mobile, tablet and desktop with different screen sizes
+
+- ✅ Form validation tested with invalid, empty and incorrect inputs
+
+- 🔁 Navigation and scrolling behavior verified on all devices
+
+- 🪟 Popup behavior tested (opening, closing, correct z-index and overlay)
+
+- 🧩 Django backend tested with different user flows: booking, login, registration, cancellation
+
+- 🧰 Code validation performed with tools such as:
+
+    - W3C Markup Validator for HTML
+
+    - W3C CSS Validator
+
+    - JSHint for JavaScript
+
+    - flake8 / PEP8 standard for Python
+
+- 🛡️ Django CSRF protection tested, including error handling and feedback
+
+- 🧪 Where applicable: Automatic tests have been written in tests.py to ensure functionality in the backend (e.g. booking flow, model validations and views)
+
+## Found Bugs & Fixes
+### 1. Popup did not block the content behind
+#### Problem:
+When using popup forms (e.g. booking or registration), the user could still click on menus and buttons in the background, which created unwanted behavior – for example, other popups opened at the same time or the user navigated away from the input in progress.
+#### Solution:
+I introduced a `<div class="overlay">` that is placed below the popup but on top of all other content. It has `position: fixed`, `top: 0`, `left: 0`, `width: 100vw`, `height: 100vh`, `background-color: rgba(0,0,0,0.5)` and `z-index: 40`. The overlay is activated via JavaScript `(style.display = "block")` at the same time as the popup is displayed, and is closed at the same time as it is.
+#### Lesson learned:
+To create focused user flows with modals, both visual separation (dark background) and the page behind it are required to be non-interactive. Overlay is a simple but powerful tool for this.
+
+### 2. Z-index issue with logo in mobile mode
+#### Problem:
+When popup forms were displayed in mobile mode, the logo (logo-bite) was still at the top of the page. This resulted in the popup's close cross not being clickable, or it visually disrupted the layout.
+#### Solution:
+I added a rule to the CSS:
+
+    body.menu-open .logo-bite,
+    body.menu-popup-open .logo-bite,
+    body.drink-popup-open .logo-bite
+    body.contact-popup-open .logo-bite{
+        display: none;
+    }
+This class `(popup-open)` is toggled via JavaScript every time a popup is opened/closed. This way, the logo is automatically hidden when a popup is active.
+#### Lesson learned:
+Responsive design is not just about visually-adapted layout – you also have to think about function and z-index hierarchy. Especially when working with `position: fixed` and different screen sizes.
+
+### 3. Error messages were not displayed on form errors
+#### Problem:
+If a form (such as contact or reservation) was submitted with invalid data – e.g. without an email address or with an already booked time – Django returned an error, but no visual feedback was shown to the user.
+#### Solution:
+I added a `div#reservationMessage` and handled the response via JavaScript with `fetch()`. The `then()` chain checks if `data.success === false`, and if so, displays a red error message with `innerHTML`, as well as any time suggestions in buttons that the user can click to change their reservation.
+#### Lesson learned:
+Effective error handling in the frontend leads to better UX. It is not enough for the backend to react correctly – the user needs to get clear visual feedback right away.
+
+### 4. Contact form closed regardless of result
+#### Problem:
+After submitting the contact form, the popup automatically closed after 3 seconds – even if an error occurred (e.g. empty message or server error). This could confuse the user who thought the message had been sent.
+#### Solution:
+I changed `setTimeout(() => closeContactPopup(), 3000);` to only run if `data.success === true`. This way, the popup will only close if the server confirms that the message was sent.
+#### Lesson learned:
+The user experience should be driven by the result, not just a timeout command. Listening to backend responses makes the interface more intuitive and reliable.
+
+### 5. Scrolled to the wrong section in the hamburger menu
+#### Problem:
+When clicking on e.g. “Menu” in the hamburger menu in mobile mode, the page did not scroll correctly to the correct section. Often it stopped above or below the actual section.
+#### Solution:
+I replaced `href="#carousel-section"` with a `scrollIntoView()` function in JavaScript that is activated via `addEventListener("click")`. I also added `behavior: "smooth"` and ensured that the menu was closed with `.classList.remove("active")`.
+#### Lesson learned:
+Built-in `href="#..."` does not always work as well in combination with fixed headers or mobile-friendly layouts. Direct control with JavaScript provides more precision and better control over the user's movement on the page.
+
