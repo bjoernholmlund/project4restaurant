@@ -425,7 +425,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Öppna popup
   function openContactPopup() {
-    contactPopup.style.display = "flex";
+    contactPopup.style.display = "flex";w
   }
 
   // Stäng popup
@@ -437,6 +437,12 @@ document.addEventListener("DOMContentLoaded", function () {
   contactLink.addEventListener("click", function (e) {
     e.preventDefault();
     openContactPopup();
+  });
+
+  window.addEventListener("click", function (event) {
+    if (event.target === contactPopup) {
+      closeContactPopup();
+    }
   });
 
   // Formulärhantering
